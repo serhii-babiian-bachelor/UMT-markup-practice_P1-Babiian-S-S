@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flora — магазин кімнатних рослин</title>
+
+    <!-- modern-normalize v2 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css"
+    />
+
+    <!-- Google Fonts: Raleway 400, 500, 600, 700 — одне посилання -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Стилі проєкту Serhii Babiian -->
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <!-- Фавікон -->
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  </head>
+
+  <body>
+    <!-- =============================================
+         HEADER — шапка сайту з навігацією
+         ============================================= -->
+    <header class="header">
+      <div class="container header__container">
+
+        <!-- Логотип — завжди посилання на головну -->
+        <a href="./index.html" class="header__logo" aria-label="Flora — повернутися на головну">
+          <svg class="header__logo-icon" width="104" height="24" aria-hidden="true">
+            <use href="images/icons.svg#icon-logo"></use>
+          </svg>
+        </a>
+
+        <!-- Навігація — тільки один <nav> на всій сторінці -->
+        <nav class="nav" aria-label="Основна навігація">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a href="#benefits" class="nav__link">Переваги</a>
+            </li>
+            <li class="nav__item">
+              <a href="#products" class="nav__link">Каталог</a>
+            </li>
+            <li class="nav__item">
+              <a href="#about" class="nav__link">Про нас</a>
+            </li>
+            <li class="nav__item">
+              <a href="#reviews" class="nav__link">Відгуки</a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Кнопка зв'язку у хедері -->
+        <a href="tel:+380441234567" class="header__phone">+38 (044) 123-45-67</a>
+
+        <!-- Кнопка гамбургера — тільки на мобільних -->
+        <button
+          class="burger-btn"
+          type="button"
+          aria-label="Відкрити меню"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <svg class="burger-btn__icon" width="24" height="24" aria-hidden="true">
+            <use href="images/icons.svg#icon-burger"></use>
+          </svg>
+        </button>
+
+      </div>
+    </header>
+
+    <!-- =============================================
+         MOBILE MENU — мобільне меню (Блок 5)
+         Початково приховане; клас is-open відкриває
+         ============================================= -->
+    <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Мобільне меню">
+      <div class="mobile-menu__container">
+
+        <!-- Кнопка закриття -->
+        <button
+          class="mobile-menu__close-btn"
+          type="button"
+          aria-label="Закрити меню"
+        >
+          <svg width="24" height="24" aria-hidden="true">
+            <use href="images/icons.svg#icon-close"></use>
+          </svg>
+        </button>
+
+        <!-- Логотип всередині меню -->
+        <a href="./index.html" class="mobile-menu__logo" aria-label="Flora — повернутися на головну">
+          <svg width="104" height="24" aria-hidden="true">
+            <use href="images/icons.svg#icon-logo"></use>
+          </svg>
+        </a>
+
+        <!-- Навігація мобільного меню -->
+        <nav class="mobile-menu__nav" aria-label="Мобільна навігація">
+          <ul class="mobile-menu__list">
+            <li class="mobile-menu__item">
+              <a href="#benefits" class="mobile-menu__link">Переваги</a>
+            </li>
+            <li class="mobile-menu__item">
+              <a href="#products" class="mobile-menu__link">Каталог</a>
+            </li>
+            <li class="mobile-menu__item">
+              <a href="#about" class="mobile-menu__link">Про нас</a>
+            </li>
+            <li class="mobile-menu__item">
+              <a href="#reviews" class="mobile-menu__link">Відгуки</a>
+            </li>
+          </ul>
+        </nav>
+
+        <a href="tel:+380441234567" class="mobile-menu__phone">+38 (044) 123-45-67</a>
+
+      </div>
+    </div>
+
+    <!-- =============================================
+         MAIN — основний контент сторінки
+         ============================================= -->
+    <main>
+
+      <!-- -------------------------------------------
+           HERO — головна секція / банер
+           ------------------------------------------- -->
+      <section class="hero">
+        <div class="container hero__container">
+          <div class="hero__content">
+            <h1 class="hero__title">
+              Рослини, що&nbsp;надихають
+            </h1>
+            <p class="hero__text">
+              Оберіть живу зелень для свого дому чи офісу — ми доставляємо красу прямо до вашого порогу.
+            </p>
+            <a href="#products" class="btn hero__btn">Переглянути каталог</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- -------------------------------------------
+           BENEFITS — переваги / чому Flora
+           ------------------------------------------- -->
+      <section class="benefits" id="benefits">
+        <div class="container">
+
+          <h2 class="section-title benefits__title">Чому обирають Flora</h2>
+
+          <ul class="benefits__list">
+
+            <li class="benefits__item">
+              <div class="benefits__icon-wrap" aria-hidden="true">
+                <svg class="benefits__icon" width="40" height="40">
+                  <use href="images/icons.svg#icon-leaf"></use>
+                </svg>
+              </div>
+              <h3 class="benefits__item-title">Свіжість гарантована</h3>
+              <p class="benefits__item-text">
+                Усі рослини вирощені у власних теплицях і доставляються у день замовлення.
+              </p>
+            </li>
+
+            <li class="benefits__item">
+              <div class="benefits__icon-wrap" aria-hidden="true">
+                <svg class="benefits__icon" width="40" height="40">
+                  <use href="images/icons.svg#icon-truck"></use>
+                </svg>
+              </div>
+              <h3 class="benefits__item-title">Швидка доставка</h3>
+              <p class="benefits__item-text">
+                Доставляємо по всій Україні протягом 1–2 робочих днів у надійному пакованні.
+              </p>
+            </li>
+
+            <li class="benefits__item">
+              <div class="benefits__icon-wrap" aria-hidden="true">
+                <svg class="benefits__icon" width="40" height="40">
+                  <use href="images/icons.svg#icon-heart"></use>
+                </svg>
+              </div>
+              <h3 class="benefits__item-title">Турбота та підтримка</h3>
+              <p class="benefits__item-text">
+                Наші фахівці завжди готові дати пораду щодо догляду за вашою рослиною.
+              </p>
+            </li>
+
+            <li class="benefits__item">
+              <div class="benefits__icon-wrap" aria-hidden="true">
+                <svg class="benefits__icon" width="40" height="40">
+                  <use href="images/icons.svg#icon-star"></use>
+                </svg>
+              </div>
+              <h3 class="benefits__item-title">Якість перевірена</h3>
+              <p class="benefits__item-text">
+                Понад 5 000 задоволених клієнтів і рейтинг 4.9 — найкращий доказ нашої роботи.
+              </p>
+            </li>
+
+          </ul>
+        </div>
+      </section>
+
+      <!-- -------------------------------------------
+           PRODUCTS — каталог товарів
+           ------------------------------------------- -->
+      <section class="products" id="products">
+        <div class="container">
+
+          <h2 class="section-title products__title">Наш каталог</h2>
+
+          <ul class="products__list">
+
+            <li class="products__item">
+              <div class="products__thumb">
+                <img
+                  src="images/products/product-1.jpg"
+                  alt="Монстера Делікіозна у білому горщику"
+                  width="360"
+                  height="380"
+                  loading="lazy"
+                />
+              </div>
+              <div class="products__info">
+                <h3 class="products__name">Монстера</h3>
+                <p class="products__price">від 450 грн</p>
+                <button class="btn products__btn" type="button">До кошика</button>
+              </div>
+            </li>
+
+            <li class="products__item">
+              <div class="products__thumb">
+                <img
+                  src="images/products/product-2.jpg"
+                  alt="Фікус Ліrata у темному горщику"
+                  width="360"
+                  height="380"
+                  loading="lazy"
+                />
+              </div>
+              <div class="products__info">
+                <h3 class="products__name">Фікус Ліrata</h3>
+                <p class="products__price">від 680 грн</p>
+                <button class="btn products__btn" type="button">До кошика</button>
+              </div>
+            </li>
+
+            <li class="products__item">
+              <div class="products__thumb">
+                <img
+                  src="images/products/product-3.jpg"
+                  alt="Сансевієрія у плетеному кашпо"
+                  width="360"
+                  height="380"
+                  loading="lazy"
+                />
+              </div>
+              <div class="products__info">
+                <h3 class="products__name">Сансевієрія</h3>
+                <p class="products__price">від 290 грн</p>
+                <button class="btn products__btn" type="button">До кошика</button>
+              </div>
+            </li>
+
+            <li class="products__item">
+              <div class="products__thumb">
+                <img
+                  src="images/products/product-4.jpg"
+                  alt="Потос золотистий у підвісному горщику"
+                  width="360"
+                  height="380"
+                  loading="lazy"
+                />
+              </div>
+              <div class="products__info">
+                <h3 class="products__name">Потос</h3>
+                <p class="products__price">від 220 грн</p>
+                <button class="btn products__btn" type="button">До кошика</button>
+              </div>
+            </li>
+
+            <li class="products__item">
+              <div class="products__thumb">
+                <img
+                  src="images/products/product-5.jpg"
+                  alt="Орхідея Фаленопсис біла у прозорому горщику"
+                  width="360"
+                  height="380"
+                  loading="lazy"
+                />
+              </div>
+              <div class="products__info">
+                <h3 class="products__name">Орхідея</h3>
+                <p class="products__price">від 540 грн</p>
+                <button class="btn products__btn" type="button">До кошика</button>
+              </div>
+            </li>
+
+            <li class="products__item">
+              <div class="products__thumb">
+                <img
+                  src="images/products/product-6.jpg"
+                  alt="Замioкулькас у чорному горщику"
+                  width="360"
+                  height="380"
+                  loading="lazy"
+                />
+              </div>
+              <div class="products__info">
+                <h3 class="products__name">Замioкулькас</h3>
+                <p class="products__price">від 380 грн</p>
+                <button class="btn products__btn" type="button">До кошика</button>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+      </section>
+
+      <!-- -------------------------------------------
+           ABOUT — про компанію Flora
+           ------------------------------------------- -->
+      <section class="about" id="about">
+        <div class="container about__container">
+
+          <div class="about__image-wrap">
+            <img
+              src="images/about/about-photo.jpg"
+              alt="Команда Flora у власній теплиці серед рослин"
+              width="600"
+              height="500"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="about__content">
+            <h2 class="section-title about__title">Про нас</h2>
+            <p class="about__text">
+              Flora — це більше ніж магазин рослин. Ми — команда ентузіастів, які щиро вірять, що живі рослини роблять простір теплішим, а людей — щасливішими.
+            </p>
+            <p class="about__text">
+              З 2018 року ми вирощуємо та доставляємо кімнатні рослини по всій Україні. Наш асортимент — понад 200 видів, і ми постійно його поповнюємо.
+            </p>
+
+            <ul class="about__stats">
+              <li class="about__stats-item">
+                <span class="about__stats-number">200+</span>
+                <span class="about__stats-label">видів рослин</span>
+              </li>
+              <li class="about__stats-item">
+                <span class="about__stats-number">5 000+</span>
+                <span class="about__stats-label">задоволених клієнтів</span>
+              </li>
+              <li class="about__stats-item">
+                <span class="about__stats-number">6</span>
+                <span class="about__stats-label">років досвіду</span>
+              </li>
+            </ul>
+
+            <a href="#products" class="btn about__btn">Обрати рослину</a>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- -------------------------------------------
+           REVIEWS — відгуки клієнтів
+           ------------------------------------------- -->
+      <section class="reviews" id="reviews">
+        <div class="container">
+
+          <h2 class="section-title reviews__title">Відгуки клієнтів</h2>
+
+          <ul class="reviews__list">
+
+            <li class="reviews__item">
+              <div class="reviews__author">
+                <img
+                  src="images/reviews/review-1.jpg"
+                  alt="Фото Ольги Коваленко"
+                  width="56"
+                  height="56"
+                  loading="lazy"
+                  class="reviews__avatar"
+                />
+                <div class="reviews__author-info">
+                  <p class="reviews__name">Ольга Коваленко</p>
+                  <p class="reviews__city">Київ</p>
+                </div>
+              </div>
+              <div class="reviews__stars" aria-label="Оцінка: 5 з 5">
+                <svg width="20" height="20" aria-hidden="true">
+                  <use href="images/icons.svg#icon-star-filled"></use>
+                </svg>
+                <svg width="20" height="20" aria-hidden="true">
+                  <use href="images/icons.svg#icon-star-filled"></use>
+                </svg>
+                <svg width="20" height="20" aria-hidden="true">
+                  <use href="images/icons.svg#icon-star-filled"></use>
+                </svg>
+                <svg width="20" height="20" aria-hidden="true">
+                  <use href="images/icons.svg#icon-star-filled"></use>
+                </svg>
+                <svg width="20" height="20" aria-hidden="true">
+                  <use href="images/icons.svg#icon-star-filled"></use>
+                </svg>
+              </div>
+              <p class="reviews__text">
+                Замовляла монстеру — приїхала в ідеальному стані, красиво упакована. Вже через тиждень дала новий лист! Дуже задоволена сервісом.
+              </p>
+            </li>
+
+            <li class="reviews__item">
+              <div class="reviews__author">
+                <img
+                  src="images/reviews/review-2.jpg"
+                  alt="Фото Дмитра Савченка"
+                  width="56"
+                  height="56"
+                  loading="lazy"
+                  class="reviews__avatar"
+                />
+                <div class="reviews__author-info">
+                  <p class="reviews__name">Дмитро Савченко</p>
+                  <p class="reviews__city">Харків</p>
+                </div>
+              </div>
+              <div class="reviews__stars" aria-label="Оцінка: 5 з 5">
+                <svg width="20" height="20" aria-hidden="true">
+                  <use href="images/icons.svg#icon-star-filled"></use>
+                </svg>
+                <svg width="20" height="20" aria-hidden="true">
+                  <use href="images/icons.svg#icon-star-filled"></use>
+                </svg>
+                <svg width="20" height="20" aria-hidden="true">
+                  <use href="images/icons.svg#icon-star-filled"></use>
+                </svg>
+                <svg width="20" height="20" aria-hidden="true">
+                  <use href="images/icons.svg#icon-star-filled"></use>
+                </svg>
+                <svg width="20" height="20" aria-hidden="true">
+                  <use href="images/icons.svg#icon-star-filled"></use>
+                </svg>
+              </div>
+              <p class="reviews__text">
+                Купував фікус як подарунок — менеджер допоміг обрати та порадив горщик. Доставка наступного дня. Буду замовляти ще!
+              </p>
+            </li>
+
+            <li class="reviews__item">
+              <div class="reviews__author">
+                <img
+                  src="images/reviews/review-3.jpg"
+                  alt="Фото Марини Бондаренко"
+                  width="56"
+                  height="56"
+                  loading="lazy"
+                  class="reviews__avatar"
+                />
+                <div class="reviews__author-info">
+                  <p class="reviews__name">Марина Бондаренко</p>
+                  <p class="reviews__city">Львів</p>
+                </div>
+              </div>
+              <div class="reviews__stars" aria-label="Оцінка: 5 з 5">
+                <svg width="20" height="20" aria-hidden="true">
+                  <use href="images/icons.svg#icon-star-filled"></use>
+                </svg>
+                <svg width="20" height="20" aria-hidden="true">
+                  <use href="images/icons.svg#icon-star-filled"></use>
+                </svg>
+                <svg width="20" height="20" aria-hidden="true">
+                  <use href="images/icons.svg#icon-star-filled"></use>
+                </svg>
+                <svg width="20" height="20" aria-hidden="true">
+                  <use href="images/icons.svg#icon-star-filled"></use>
+                </svg>
+                <svg width="20" height="20" aria-hidden="true">
+                  <use href="images/icons.svg#icon-star-filled"></use>
+                </svg>
+              </div>
+              <p class="reviews__text">
+                Шикарний магазин! Рослини здорові, ціни чесні, а ще є безкоштовна порада від флориста. Всім рекомендую Flora!
+              </p>
+            </li>
+
+          </ul>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- =============================================
+         FOOTER — підвал сайту
+         ============================================= -->
+    <footer class="footer">
+      <div class="container footer__container">
+
+        <!-- Логотип у футері — теж посилання на головну -->
+        <a href="./index.html" class="footer__logo" aria-label="Flora — повернутися на головну">
+          <svg width="104" height="24" aria-hidden="true">
+            <use href="images/icons.svg#icon-logo-light"></use>
+          </svg>
+        </a>
+
+        <!-- Навігація футера -->
+        <nav class="footer__nav" aria-label="Навігація підвалу">
+          <ul class="footer__nav-list">
+            <li class="footer__nav-item">
+              <a href="#benefits" class="footer__nav-link">Переваги</a>
+            </li>
+            <li class="footer__nav-item">
+              <a href="#products" class="footer__nav-link">Каталог</a>
+            </li>
+            <li class="footer__nav-item">
+              <a href="#about" class="footer__nav-link">Про нас</a>
+            </li>
+            <li class="footer__nav-item">
+              <a href="#reviews" class="footer__nav-link">Відгуки</a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Контакти -->
+        <address class="footer__contacts">
+          <a href="tel:+380441234567" class="footer__contact-link">+38 (044) 123-45-67</a>
+          <a href="mailto:hello@flora.ua" class="footer__contact-link">hello@flora.ua</a>
+        </address>
+
+        <!-- Соцмережі -->
+        <ul class="footer__socials">
+          <li class="footer__socials-item">
+            <a
+              href="https://instagram.com"
+              class="footer__social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram Flora"
+            >
+              <svg width="24" height="24" aria-hidden="true">
+                <use href="images/icons.svg#icon-instagram"></use>
+              </svg>
+            </a>
+          </li>
+          <li class="footer__socials-item">
+            <a
+              href="https://facebook.com"
+              class="footer__social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook Flora"
+            >
+              <svg width="24" height="24" aria-hidden="true">
+                <use href="images/icons.svg#icon-facebook"></use>
+              </svg>
+            </a>
+          </li>
+          <li class="footer__socials-item">
+            <a
+              href="https://t.me/flora_ua"
+              class="footer__social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Telegram Flora"
+            >
+              <svg width="24" height="24" aria-hidden="true">
+                <use href="images/icons.svg#icon-telegram"></use>
+              </svg>
+            </a>
+          </li>
+        </ul>
+
+        <p class="footer__copy">&copy; 2026 Flora. Усі права захищені.</p>
+
+      </div>
+    </footer>
+
+    <!-- SVG-спрайт прихований від користувача, але доступний через <use> -->
+    <!-- Файл: images/icons.svg -->
+
+    <!-- JS для мобільного меню (toggle класу is-open) -->
+    <script src="js/mobile-menu.js"></script>
+
+  </body>
+</html>

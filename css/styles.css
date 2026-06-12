@@ -1,0 +1,43 @@
+/* ============================================
+   ДИЗАЙН-СИСТЕМА — CSS-ЗМІННІ (Блок 2)
+   ============================================ */
+:root {
+  /* Кольори */
+  --color-primary: #2b7a48;
+  --color-primary-light: #427d5e;
+  --color-text: #1b1b1b;
+  --color-text-secondary: #717171;
+  --color-bg: #ffffff;
+  --color-bg-section: #f7f7f7;
+  --color-border: #e0e0e0;
+  --color-white: #ffffff;
+
+  /* Шрифт */
+  --font-family: "Raleway", sans-serif;
+
+  /* Розміри шрифтів (mobile-first) */
+  --font-size-base: 16px;
+}
+
+/* ============================================
+   СКИДАННЯ СТИЛІВ
+   ============================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ============================================
+   БАЗОВІ СТИЛІ BODY
+   ============================================ */
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  font-weight: 400;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
