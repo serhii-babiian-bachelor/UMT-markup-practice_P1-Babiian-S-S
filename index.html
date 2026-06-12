@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Flora — магазин кімнатних рослин</title>
+    <title>Flora — Stunning Bouquets</title>
 
     <!-- modern-normalize v2 -->
     <link
@@ -11,65 +11,77 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css"
     />
 
-    <!-- Google Fonts: Raleway 400, 500, 600, 700 — одне посилання -->
+    <!-- Google Fonts: Playfair Display + Inter — одне посилання -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
-    <!-- Стилі проєкту Serhii Babiian -->
+    <!-- Animate.css — бібліотека анімацій (Блок 4) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+
+    <!-- Стилі проєкту — Serhii Babiian -->
     <link rel="stylesheet" href="css/styles.css" />
 
     <!-- Фавікон -->
-    <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+    <link rel="icon" type="image/png" href="images/favicon.png" />
   </head>
 
   <body>
-    <!-- =============================================
-         HEADER — шапка сайту з навігацією
-         ============================================= -->
+
+    <!-- ================================================
+         HEADER
+         ================================================ -->
     <header class="header">
       <div class="container header__container">
 
-        <!-- Логотип — завжди посилання на головну -->
-        <a href="./index.html" class="header__logo" aria-label="Flora — повернутися на головну">
-          <svg class="header__logo-icon" width="104" height="24" aria-hidden="true">
-            <use href="images/icons.svg#icon-logo"></use>
-          </svg>
+        <a href="./index.html" class="header__logo" aria-label="Flora — go to homepage">
+          <img
+            src="images/logo.svg"
+            alt="Flora logo"
+            width="80"
+            height="36"
+          />
         </a>
 
-        <!-- Навігація — тільки один <nav> на всій сторінці -->
-        <nav class="nav" aria-label="Основна навігація">
+        <nav class="nav" aria-label="Main navigation">
           <ul class="nav__list">
             <li class="nav__item">
-              <a href="#benefits" class="nav__link">Переваги</a>
+              <a href="#about" class="nav__link">About Us</a>
             </li>
             <li class="nav__item">
-              <a href="#products" class="nav__link">Каталог</a>
+              <a href="#bestsellers" class="nav__link">Bestsellers</a>
             </li>
             <li class="nav__item">
-              <a href="#about" class="nav__link">Про нас</a>
+              <a href="#bouquets" class="nav__link">Bouquets</a>
             </li>
             <li class="nav__item">
-              <a href="#reviews" class="nav__link">Відгуки</a>
+              <a href="#feedback" class="nav__link">Feedback</a>
+            </li>
+            <li class="nav__item">
+              <a href="#contacts" class="nav__link">Contacts</a>
             </li>
           </ul>
         </nav>
 
-        <!-- Кнопка зв'язку у хедері -->
-        <a href="tel:+380441234567" class="header__phone">+38 (044) 123-45-67</a>
+        <a href="#bestsellers" class="btn btn--primary header__cta">
+          Explore Bouquets
+        </a>
 
-        <!-- Кнопка гамбургера — тільки на мобільних -->
+        <!-- Burger button — mobile only -->
         <button
           class="burger-btn"
           type="button"
-          aria-label="Відкрити меню"
+          aria-label="Open menu"
           aria-expanded="false"
           aria-controls="mobile-menu"
         >
-          <svg class="burger-btn__icon" width="24" height="24" aria-hidden="true">
+          <svg width="24" height="24" aria-hidden="true">
             <use href="images/icons.svg#icon-burger"></use>
           </svg>
         </button>
@@ -77,517 +89,775 @@
       </div>
     </header>
 
-    <!-- =============================================
-         MOBILE MENU — мобільне меню (Блок 5)
-         Початково приховане; клас is-open відкриває
-         ============================================= -->
-    <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Мобільне меню">
+    <!-- ================================================
+         MOBILE MENU (Блок 5)
+         ================================================ -->
+    <div
+      class="mobile-menu"
+      id="mobile-menu"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Mobile menu"
+    >
       <div class="mobile-menu__container">
 
-        <!-- Кнопка закриття -->
-        <button
-          class="mobile-menu__close-btn"
-          type="button"
-          aria-label="Закрити меню"
-        >
-          <svg width="24" height="24" aria-hidden="true">
-            <use href="images/icons.svg#icon-close"></use>
-          </svg>
-        </button>
+        <div class="mobile-menu__top">
+          <a href="./index.html" class="mobile-menu__logo" aria-label="Flora — go to homepage">
+            <img
+              src="images/logo.svg"
+              alt="Flora logo"
+              width="80"
+              height="36"
+            />
+          </a>
+          <button
+            class="mobile-menu__close"
+            type="button"
+            aria-label="Close menu"
+          >
+            <svg width="24" height="24" aria-hidden="true">
+              <use href="images/icons.svg#icon-close"></use>
+            </svg>
+          </button>
+        </div>
 
-        <!-- Логотип всередині меню -->
-        <a href="./index.html" class="mobile-menu__logo" aria-label="Flora — повернутися на головну">
-          <svg width="104" height="24" aria-hidden="true">
-            <use href="images/icons.svg#icon-logo"></use>
-          </svg>
-        </a>
-
-        <!-- Навігація мобільного меню -->
-        <nav class="mobile-menu__nav" aria-label="Мобільна навігація">
+        <nav class="mobile-menu__nav" aria-label="Mobile navigation">
           <ul class="mobile-menu__list">
             <li class="mobile-menu__item">
-              <a href="#benefits" class="mobile-menu__link">Переваги</a>
+              <a href="#about" class="mobile-menu__link">About Us</a>
             </li>
             <li class="mobile-menu__item">
-              <a href="#products" class="mobile-menu__link">Каталог</a>
+              <a href="#bestsellers" class="mobile-menu__link">Bestsellers</a>
             </li>
             <li class="mobile-menu__item">
-              <a href="#about" class="mobile-menu__link">Про нас</a>
+              <a href="#bouquets" class="mobile-menu__link">Bouquets</a>
             </li>
             <li class="mobile-menu__item">
-              <a href="#reviews" class="mobile-menu__link">Відгуки</a>
+              <a href="#feedback" class="mobile-menu__link">Feedback</a>
+            </li>
+            <li class="mobile-menu__item">
+              <a href="#contacts" class="mobile-menu__link">Contacts</a>
             </li>
           </ul>
         </nav>
 
-        <a href="tel:+380441234567" class="mobile-menu__phone">+38 (044) 123-45-67</a>
+        <a href="#bestsellers" class="btn btn--primary mobile-menu__cta">
+          Explore Bouquets
+        </a>
 
       </div>
     </div>
 
-    <!-- =============================================
-         MAIN — основний контент сторінки
-         ============================================= -->
+    <!-- ================================================
+         MAIN
+         ================================================ -->
     <main>
 
-      <!-- -------------------------------------------
-           HERO — головна секція / банер
-           ------------------------------------------- -->
+      <!-- HERO -->
       <section class="hero">
         <div class="container hero__container">
           <div class="hero__content">
             <h1 class="hero__title">
-              Рослини, що&nbsp;надихають
+              Brighten Your Day with Our Stunning Bouquets
             </h1>
             <p class="hero__text">
-              Оберіть живу зелень для свого дому чи офісу — ми доставляємо красу прямо до вашого порогу.
+              At Flora, we believe that every occasion deserves a beautiful
+              bouquet. Our expertly crafted arrangements are designed to bring
+              joy and elegance to your celebrations.
             </p>
-            <a href="#products" class="btn hero__btn">Переглянути каталог</a>
+            <a href="#bestsellers" class="btn btn--primary hero__btn">
+              Explore Our Bestsellers
+            </a>
+          </div>
+          <div class="hero__image-wrap">
+            <img
+              src="images/hero/hero-bouquet.jpg"
+              alt="A stunning pink and white bouquet with peonies and roses"
+              width="600"
+              height="560"
+            />
           </div>
         </div>
       </section>
 
-      <!-- -------------------------------------------
-           BENEFITS — переваги / чому Flora
-           ------------------------------------------- -->
-      <section class="benefits" id="benefits">
-        <div class="container">
-
-          <h2 class="section-title benefits__title">Чому обирають Flora</h2>
-
-          <ul class="benefits__list">
-
-            <li class="benefits__item">
-              <div class="benefits__icon-wrap" aria-hidden="true">
-                <svg class="benefits__icon" width="40" height="40">
-                  <use href="images/icons.svg#icon-leaf"></use>
-                </svg>
-              </div>
-              <h3 class="benefits__item-title">Свіжість гарантована</h3>
-              <p class="benefits__item-text">
-                Усі рослини вирощені у власних теплицях і доставляються у день замовлення.
-              </p>
-            </li>
-
-            <li class="benefits__item">
-              <div class="benefits__icon-wrap" aria-hidden="true">
-                <svg class="benefits__icon" width="40" height="40">
-                  <use href="images/icons.svg#icon-truck"></use>
-                </svg>
-              </div>
-              <h3 class="benefits__item-title">Швидка доставка</h3>
-              <p class="benefits__item-text">
-                Доставляємо по всій Україні протягом 1–2 робочих днів у надійному пакованні.
-              </p>
-            </li>
-
-            <li class="benefits__item">
-              <div class="benefits__icon-wrap" aria-hidden="true">
-                <svg class="benefits__icon" width="40" height="40">
-                  <use href="images/icons.svg#icon-heart"></use>
-                </svg>
-              </div>
-              <h3 class="benefits__item-title">Турбота та підтримка</h3>
-              <p class="benefits__item-text">
-                Наші фахівці завжди готові дати пораду щодо догляду за вашою рослиною.
-              </p>
-            </li>
-
-            <li class="benefits__item">
-              <div class="benefits__icon-wrap" aria-hidden="true">
-                <svg class="benefits__icon" width="40" height="40">
-                  <use href="images/icons.svg#icon-star"></use>
-                </svg>
-              </div>
-              <h3 class="benefits__item-title">Якість перевірена</h3>
-              <p class="benefits__item-text">
-                Понад 5 000 задоволених клієнтів і рейтинг 4.9 — найкращий доказ нашої роботи.
-              </p>
-            </li>
-
-          </ul>
-        </div>
-      </section>
-
-      <!-- -------------------------------------------
-           PRODUCTS — каталог товарів
-           ------------------------------------------- -->
-      <section class="products" id="products">
-        <div class="container">
-
-          <h2 class="section-title products__title">Наш каталог</h2>
-
-          <ul class="products__list">
-
-            <li class="products__item">
-              <div class="products__thumb">
-                <img
-                  src="images/products/product-1.jpg"
-                  alt="Монстера Делікіозна у білому горщику"
-                  width="360"
-                  height="380"
-                  loading="lazy"
-                />
-              </div>
-              <div class="products__info">
-                <h3 class="products__name">Монстера</h3>
-                <p class="products__price">від 450 грн</p>
-                <button class="btn products__btn" type="button">До кошика</button>
-              </div>
-            </li>
-
-            <li class="products__item">
-              <div class="products__thumb">
-                <img
-                  src="images/products/product-2.jpg"
-                  alt="Фікус Ліrata у темному горщику"
-                  width="360"
-                  height="380"
-                  loading="lazy"
-                />
-              </div>
-              <div class="products__info">
-                <h3 class="products__name">Фікус Ліrata</h3>
-                <p class="products__price">від 680 грн</p>
-                <button class="btn products__btn" type="button">До кошика</button>
-              </div>
-            </li>
-
-            <li class="products__item">
-              <div class="products__thumb">
-                <img
-                  src="images/products/product-3.jpg"
-                  alt="Сансевієрія у плетеному кашпо"
-                  width="360"
-                  height="380"
-                  loading="lazy"
-                />
-              </div>
-              <div class="products__info">
-                <h3 class="products__name">Сансевієрія</h3>
-                <p class="products__price">від 290 грн</p>
-                <button class="btn products__btn" type="button">До кошика</button>
-              </div>
-            </li>
-
-            <li class="products__item">
-              <div class="products__thumb">
-                <img
-                  src="images/products/product-4.jpg"
-                  alt="Потос золотистий у підвісному горщику"
-                  width="360"
-                  height="380"
-                  loading="lazy"
-                />
-              </div>
-              <div class="products__info">
-                <h3 class="products__name">Потос</h3>
-                <p class="products__price">від 220 грн</p>
-                <button class="btn products__btn" type="button">До кошика</button>
-              </div>
-            </li>
-
-            <li class="products__item">
-              <div class="products__thumb">
-                <img
-                  src="images/products/product-5.jpg"
-                  alt="Орхідея Фаленопсис біла у прозорому горщику"
-                  width="360"
-                  height="380"
-                  loading="lazy"
-                />
-              </div>
-              <div class="products__info">
-                <h3 class="products__name">Орхідея</h3>
-                <p class="products__price">від 540 грн</p>
-                <button class="btn products__btn" type="button">До кошика</button>
-              </div>
-            </li>
-
-            <li class="products__item">
-              <div class="products__thumb">
-                <img
-                  src="images/products/product-6.jpg"
-                  alt="Замioкулькас у чорному горщику"
-                  width="360"
-                  height="380"
-                  loading="lazy"
-                />
-              </div>
-              <div class="products__info">
-                <h3 class="products__name">Замioкулькас</h3>
-                <p class="products__price">від 380 грн</p>
-                <button class="btn products__btn" type="button">До кошика</button>
-              </div>
-            </li>
-
-          </ul>
-        </div>
-      </section>
-
-      <!-- -------------------------------------------
-           ABOUT — про компанію Flora
-           ------------------------------------------- -->
+      <!-- ABOUT -->
       <section class="about" id="about">
         <div class="container about__container">
 
+          <div class="about__content">
+            <div class="about__icon" aria-hidden="true">
+              <img
+                src="images/icons/flower-decor.svg"
+                alt=""
+                width="80"
+                height="80"
+              />
+            </div>
+            <h2 class="about__title">Our Passion for Floral Artistry</h2>
+            <p class="about__text">
+              At Flora, we believe that every bouquet tells a story. Our team
+              meticulously crafts each arrangement, blending creativity with
+              the freshest blooms to create stunning pieces for every occasion.
+            </p>
+          </div>
+
           <div class="about__image-wrap">
             <img
-              src="images/about/about-photo.jpg"
-              alt="Команда Flora у власній теплиці серед рослин"
-              width="600"
-              height="500"
+              src="images/about/florist-working.jpg"
+              alt="A florist in a green apron carefully arranging white peonies"
+              width="540"
+              height="420"
+            />
+          </div>
+
+        </div>
+      </section>
+
+      <!-- TOP-SELLING BOUQUETS (slider) -->
+      <section class="bestsellers" id="bestsellers">
+        <div class="container">
+
+          <h2 class="bestsellers__title">Top-Selling Bouquets</h2>
+
+          <div class="bestsellers__slider-wrap">
+            <ul class="bestsellers__list">
+
+              <li class="bestsellers__item">
+                <div class="bestsellers__thumb">
+                  <img
+                    src="images/bestsellers/spring-elegance.jpg"
+                    alt="Spring Elegance — pink tulips, peonies and roses on blue background"
+                    width="430"
+                    height="310"
+                    loading="lazy"
+                  />
+                </div>
+                <h3 class="bestsellers__name">Spring Elegance</h3>
+                <p class="bestsellers__desc">
+                  A delicate blend of peonies, tulips, and roses — perfect for
+                  springtime gifting and bright smiles.
+                </p>
+                <p class="bestsellers__price">$35</p>
+              </li>
+
+              <li class="bestsellers__item">
+                <div class="bestsellers__thumb">
+                  <img
+                    src="images/bestsellers/berry-chic.jpg"
+                    alt="Berry Chic — roses and seasonal greenery with vibrant berries"
+                    width="430"
+                    height="310"
+                    loading="lazy"
+                  />
+                </div>
+                <h3 class="bestsellers__name">Berry Chic</h3>
+                <p class="bestsellers__desc">
+                  A stylish composition of roses, seasonal greenery, and
+                  vibrant berries — a bold and elegant floral statement.
+                </p>
+                <p class="bestsellers__price">$40</p>
+              </li>
+
+              <li class="bestsellers__item">
+                <div class="bestsellers__thumb">
+                  <img
+                    src="images/bestsellers/lavender-dream.jpg"
+                    alt="Lavender Dream — lavender, lisianthus and roses in deep purple tones"
+                    width="430"
+                    height="310"
+                    loading="lazy"
+                  />
+                </div>
+                <h3 class="bestsellers__name">Lavender Dream</h3>
+                <p class="bestsellers__desc">
+                  A rich bouquet with lavender, lisianthus, and roses — ideal
+                  for those who love deep hues and gentle fragrance.
+                </p>
+                <p class="bestsellers__price">$55</p>
+              </li>
+
+            </ul>
+
+            <!-- Slider dots -->
+            <div class="bestsellers__dots" aria-label="Slider navigation">
+              <button class="bestsellers__dot bestsellers__dot--active" type="button" aria-label="Slide 1"></button>
+              <button class="bestsellers__dot" type="button" aria-label="Slide 2"></button>
+              <button class="bestsellers__dot" type="button" aria-label="Slide 3"></button>
+              <button class="bestsellers__dot" type="button" aria-label="Slide 4"></button>
+              <button class="bestsellers__dot" type="button" aria-label="Slide 5"></button>
+              <button class="bestsellers__dot" type="button" aria-label="Slide 6"></button>
+            </div>
+
+            <!-- Slider arrows -->
+            <div class="bestsellers__arrows">
+              <button class="slider-arrow" type="button" aria-label="Previous slide">
+                <svg width="20" height="20" aria-hidden="true">
+                  <use href="images/icons.svg#icon-arrow-left"></use>
+                </svg>
+              </button>
+              <button class="slider-arrow" type="button" aria-label="Next slide">
+                <svg width="20" height="20" aria-hidden="true">
+                  <use href="images/icons.svg#icon-arrow-right"></use>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- BOUQUETS CATALOGUE -->
+      <section class="bouquets" id="bouquets">
+        <div class="container">
+
+          <h2 class="bouquets__title">Bouquets</h2>
+          <a href="#" class="bouquets__subtitle-link">
+            Explore our stunning selection of fresh flower bouquets.
+          </a>
+
+          <ul class="bouquets__list">
+
+            <li class="bouquets__item">
+              <button
+                class="bouquets__card-btn"
+                type="button"
+                aria-label="View details for Peach Meadow"
+                data-modal="product"
+              >
+                <div class="bouquets__thumb">
+                  <img
+                    src="images/bouquets/peach-meadow.jpg"
+                    alt="Peach Meadow — peach and blush roses in a straw basket"
+                    width="280"
+                    height="220"
+                    loading="lazy"
+                  />
+                </div>
+                <h3 class="bouquets__name">Peach Meadow</h3>
+                <p class="bouquets__desc">
+                  A soft and radiant arrangement of peach and blush roses with
+                  lush greenery in a straw basket — light and natural.
+                </p>
+                <p class="bouquets__price">$55</p>
+              </button>
+            </li>
+
+            <li class="bouquets__item">
+              <button
+                class="bouquets__card-btn"
+                type="button"
+                aria-label="View details for Blush Romance"
+                data-modal="product"
+              >
+                <div class="bouquets__thumb">
+                  <img
+                    src="images/bouquets/blush-romance.jpg"
+                    alt="Blush Romance — deep pink and ivory roses with silver eucalyptus"
+                    width="280"
+                    height="220"
+                    loading="lazy"
+                  />
+                </div>
+                <h3 class="bouquets__name">Blush Romance</h3>
+                <p class="bouquets__desc">
+                  A premium bouquet of deep pink and ivory roses, complemented
+                  by silver eucalyptus — sophisticated and intimate.
+                </p>
+                <p class="bouquets__price">$34</p>
+              </button>
+            </li>
+
+            <li class="bouquets__item">
+              <button
+                class="bouquets__card-btn"
+                type="button"
+                aria-label="View details for Pastel Garden"
+                data-modal="product"
+              >
+                <div class="bouquets__thumb">
+                  <img
+                    src="images/bouquets/pastel-garden.jpg"
+                    alt="Pastel Garden — spray roses and greenery in a woven basket"
+                    width="280"
+                    height="220"
+                    loading="lazy"
+                  />
+                </div>
+                <h3 class="bouquets__name">Pastel Garden</h3>
+                <p class="bouquets__desc">
+                  A pastel-toned mix of spray roses and greenery in a woven
+                  basket — gentle, airy, and perfect for any occasion.
+                </p>
+                <p class="bouquets__price">$40</p>
+              </button>
+            </li>
+
+            <li class="bouquets__item">
+              <button
+                class="bouquets__card-btn"
+                type="button"
+                aria-label="View details for Tulip Charm"
+                data-modal="product"
+              >
+                <div class="bouquets__thumb">
+                  <img
+                    src="images/bouquets/tulip-charm.jpg"
+                    alt="Tulip Charm — bright tulips and roses in a lavender box"
+                    width="280"
+                    height="220"
+                    loading="lazy"
+                  />
+                </div>
+                <h3 class="bouquets__name">Tulip Charm</h3>
+                <p class="bouquets__desc">
+                  A vivid bouquet of bright tulips and roses in a lavender
+                  box — cheerful and full of charm.
+                </p>
+                <p class="bouquets__price">$61</p>
+              </button>
+            </li>
+
+            <li class="bouquets__item">
+              <button
+                class="bouquets__card-btn"
+                type="button"
+                aria-label="View details for Berry Bloom"
+                data-modal="product"
+              >
+                <div class="bouquets__thumb">
+                  <img
+                    src="images/bouquets/berry-bloom.jpg"
+                    alt="Berry Bloom — rich pink, purple and cream blooms with textured greens"
+                    width="280"
+                    height="220"
+                    loading="lazy"
+                  />
+                </div>
+                <h3 class="bouquets__name">Berry Bloom</h3>
+                <p class="bouquets__desc">
+                  A lush mix of rich pink, purple, and cream blooms with
+                  textured greens — romantic and elegant.
+                </p>
+                <p class="bouquets__price">$32</p>
+              </button>
+            </li>
+
+            <li class="bouquets__item">
+              <button
+                class="bouquets__card-btn"
+                type="button"
+                aria-label="View details for Sweet Whisper"
+                data-modal="product"
+              >
+                <div class="bouquets__thumb">
+                  <img
+                    src="images/bouquets/sweet-whisper.jpg"
+                    alt="Sweet Whisper — peonies, roses and lilac-toned accents in a wicker basket"
+                    width="280"
+                    height="220"
+                    loading="lazy"
+                  />
+                </div>
+                <h3 class="bouquets__name">Sweet Whisper</h3>
+                <p class="bouquets__desc">
+                  A charming spring bouquet with peonies, roses, and
+                  lilac-toned accents — fresh, lively, and expressive.
+                </p>
+                <p class="bouquets__price">$40</p>
+              </button>
+            </li>
+
+            <li class="bouquets__item">
+              <button
+                class="bouquets__card-btn"
+                type="button"
+                aria-label="View details for Field Joy"
+                data-modal="product"
+              >
+                <div class="bouquets__thumb">
+                  <img
+                    src="images/bouquets/field-joy.jpg"
+                    alt="Field Joy — rustic hand-tied sunflowers, lisianthus and daisies"
+                    width="280"
+                    height="220"
+                    loading="lazy"
+                  />
+                </div>
+                <h3 class="bouquets__name">Field Joy</h3>
+                <p class="bouquets__desc">
+                  A rustic hand-tied bouquet of sunflowers, lisianthus, and
+                  daisies — perfect for brightening the day.
+                </p>
+                <p class="bouquets__price">$49</p>
+              </button>
+            </li>
+
+            <li class="bouquets__item">
+              <button
+                class="bouquets__card-btn"
+                type="button"
+                aria-label="View details for Soft Bloom"
+                data-modal="product"
+              >
+                <div class="bouquets__thumb">
+                  <img
+                    src="images/bouquets/soft-bloom.jpg"
+                    alt="Soft Bloom — pink carnations and roses wrapped in satin paper"
+                    width="280"
+                    height="220"
+                    loading="lazy"
+                  />
+                </div>
+                <h3 class="bouquets__name">Soft Bloom</h3>
+                <p class="bouquets__desc">
+                  A delicate bouquet of pink carnations and roses wrapped in
+                  satin paper — soft, stylish, and versatile.
+                </p>
+                <p class="bouquets__price">$37</p>
+              </button>
+            </li>
+
+          </ul>
+
+          <button class="btn btn--primary bouquets__show-more" type="button">
+            Show More
+          </button>
+
+        </div>
+      </section>
+
+      <!-- FEEDBACK / REVIEWS -->
+      <section class="feedback" id="feedback">
+        <div class="container">
+
+          <h2 class="feedback__title">What our clients says</h2>
+
+          <div class="feedback__slider-wrap">
+            <ul class="feedback__list">
+
+              <li class="feedback__item">
+                <blockquote class="feedback__quote">
+                  <p class="feedback__text">
+                    "Flora made my anniversary unforgettable with their
+                    beautiful arrangement!"
+                  </p>
+                  <footer class="feedback__author">
+                    <cite class="feedback__name">Emma T.</cite>
+                  </footer>
+                </blockquote>
+              </li>
+
+              <li class="feedback__item">
+                <blockquote class="feedback__quote">
+                  <p class="feedback__text">
+                    Absolutely stunning bouquet! It looked even better than
+                    the photo and arrived right on time.
+                  </p>
+                  <footer class="feedback__author">
+                    <cite class="feedback__name">Daniel R.</cite>
+                  </footer>
+                </blockquote>
+              </li>
+
+              <li class="feedback__item">
+                <blockquote class="feedback__quote">
+                  <p class="feedback__text">
+                    The service was exceptional, and the flowers were fresh!
+                  </p>
+                  <footer class="feedback__author">
+                    <cite class="feedback__name">Olivia M.</cite>
+                  </footer>
+                </blockquote>
+              </li>
+
+            </ul>
+
+            <!-- Slider arrows -->
+            <div class="feedback__arrows">
+              <button class="slider-arrow" type="button" aria-label="Previous review">
+                <svg width="20" height="20" aria-hidden="true">
+                  <use href="images/icons.svg#icon-arrow-left"></use>
+                </svg>
+              </button>
+              <button class="slider-arrow" type="button" aria-label="Next review">
+                <svg width="20" height="20" aria-hidden="true">
+                  <use href="images/icons.svg#icon-arrow-right"></use>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- GET IN TOUCH / CONTACTS -->
+      <section class="contacts" id="contacts">
+        <div class="container contacts__container">
+
+          <div class="contacts__info">
+            <p class="contacts__label">Connect</p>
+            <h2 class="contacts__title">Get in Touch</h2>
+            <p class="contacts__text">
+              We're here to assist you with all your floral needs and inquiries.
+            </p>
+
+            <ul class="contacts__list">
+              <li class="contacts__item">
+                <svg class="contacts__icon" width="24" height="24" aria-hidden="true">
+                  <use href="images/icons.svg#icon-phone"></use>
+                </svg>
+                <div>
+                  <p class="contacts__item-label">Phone</p>
+                  <a href="tel:+15551234567" class="contacts__link">
+                    +1 (555) 123-4567
+                  </a>
+                </div>
+              </li>
+              <li class="contacts__item">
+                <svg class="contacts__icon" width="24" height="24" aria-hidden="true">
+                  <use href="images/icons.svg#icon-location"></use>
+                </svg>
+                <div>
+                  <p class="contacts__item-label">Store</p>
+                  <address class="contacts__address">
+                    456 Floral Ave, Sydney NSW 2000 AU
+                  </address>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="contacts__image-wrap">
+            <img
+              src="images/contacts/florist-store.jpg"
+              alt="A florist wrapping a yellow bouquet in a flower shop"
+              width="680"
+              height="440"
               loading="lazy"
             />
           </div>
 
-          <div class="about__content">
-            <h2 class="section-title about__title">Про нас</h2>
-            <p class="about__text">
-              Flora — це більше ніж магазин рослин. Ми — команда ентузіастів, які щиро вірять, що живі рослини роблять простір теплішим, а людей — щасливішими.
-            </p>
-            <p class="about__text">
-              З 2018 року ми вирощуємо та доставляємо кімнатні рослини по всій Україні. Наш асортимент — понад 200 видів, і ми постійно його поповнюємо.
-            </p>
-
-            <ul class="about__stats">
-              <li class="about__stats-item">
-                <span class="about__stats-number">200+</span>
-                <span class="about__stats-label">видів рослин</span>
-              </li>
-              <li class="about__stats-item">
-                <span class="about__stats-number">5 000+</span>
-                <span class="about__stats-label">задоволених клієнтів</span>
-              </li>
-              <li class="about__stats-item">
-                <span class="about__stats-number">6</span>
-                <span class="about__stats-label">років досвіду</span>
-              </li>
-            </ul>
-
-            <a href="#products" class="btn about__btn">Обрати рослину</a>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- -------------------------------------------
-           REVIEWS — відгуки клієнтів
-           ------------------------------------------- -->
-      <section class="reviews" id="reviews">
-        <div class="container">
-
-          <h2 class="section-title reviews__title">Відгуки клієнтів</h2>
-
-          <ul class="reviews__list">
-
-            <li class="reviews__item">
-              <div class="reviews__author">
-                <img
-                  src="images/reviews/review-1.jpg"
-                  alt="Фото Ольги Коваленко"
-                  width="56"
-                  height="56"
-                  loading="lazy"
-                  class="reviews__avatar"
-                />
-                <div class="reviews__author-info">
-                  <p class="reviews__name">Ольга Коваленко</p>
-                  <p class="reviews__city">Київ</p>
-                </div>
-              </div>
-              <div class="reviews__stars" aria-label="Оцінка: 5 з 5">
-                <svg width="20" height="20" aria-hidden="true">
-                  <use href="images/icons.svg#icon-star-filled"></use>
-                </svg>
-                <svg width="20" height="20" aria-hidden="true">
-                  <use href="images/icons.svg#icon-star-filled"></use>
-                </svg>
-                <svg width="20" height="20" aria-hidden="true">
-                  <use href="images/icons.svg#icon-star-filled"></use>
-                </svg>
-                <svg width="20" height="20" aria-hidden="true">
-                  <use href="images/icons.svg#icon-star-filled"></use>
-                </svg>
-                <svg width="20" height="20" aria-hidden="true">
-                  <use href="images/icons.svg#icon-star-filled"></use>
-                </svg>
-              </div>
-              <p class="reviews__text">
-                Замовляла монстеру — приїхала в ідеальному стані, красиво упакована. Вже через тиждень дала новий лист! Дуже задоволена сервісом.
-              </p>
-            </li>
-
-            <li class="reviews__item">
-              <div class="reviews__author">
-                <img
-                  src="images/reviews/review-2.jpg"
-                  alt="Фото Дмитра Савченка"
-                  width="56"
-                  height="56"
-                  loading="lazy"
-                  class="reviews__avatar"
-                />
-                <div class="reviews__author-info">
-                  <p class="reviews__name">Дмитро Савченко</p>
-                  <p class="reviews__city">Харків</p>
-                </div>
-              </div>
-              <div class="reviews__stars" aria-label="Оцінка: 5 з 5">
-                <svg width="20" height="20" aria-hidden="true">
-                  <use href="images/icons.svg#icon-star-filled"></use>
-                </svg>
-                <svg width="20" height="20" aria-hidden="true">
-                  <use href="images/icons.svg#icon-star-filled"></use>
-                </svg>
-                <svg width="20" height="20" aria-hidden="true">
-                  <use href="images/icons.svg#icon-star-filled"></use>
-                </svg>
-                <svg width="20" height="20" aria-hidden="true">
-                  <use href="images/icons.svg#icon-star-filled"></use>
-                </svg>
-                <svg width="20" height="20" aria-hidden="true">
-                  <use href="images/icons.svg#icon-star-filled"></use>
-                </svg>
-              </div>
-              <p class="reviews__text">
-                Купував фікус як подарунок — менеджер допоміг обрати та порадив горщик. Доставка наступного дня. Буду замовляти ще!
-              </p>
-            </li>
-
-            <li class="reviews__item">
-              <div class="reviews__author">
-                <img
-                  src="images/reviews/review-3.jpg"
-                  alt="Фото Марини Бондаренко"
-                  width="56"
-                  height="56"
-                  loading="lazy"
-                  class="reviews__avatar"
-                />
-                <div class="reviews__author-info">
-                  <p class="reviews__name">Марина Бондаренко</p>
-                  <p class="reviews__city">Львів</p>
-                </div>
-              </div>
-              <div class="reviews__stars" aria-label="Оцінка: 5 з 5">
-                <svg width="20" height="20" aria-hidden="true">
-                  <use href="images/icons.svg#icon-star-filled"></use>
-                </svg>
-                <svg width="20" height="20" aria-hidden="true">
-                  <use href="images/icons.svg#icon-star-filled"></use>
-                </svg>
-                <svg width="20" height="20" aria-hidden="true">
-                  <use href="images/icons.svg#icon-star-filled"></use>
-                </svg>
-                <svg width="20" height="20" aria-hidden="true">
-                  <use href="images/icons.svg#icon-star-filled"></use>
-                </svg>
-                <svg width="20" height="20" aria-hidden="true">
-                  <use href="images/icons.svg#icon-star-filled"></use>
-                </svg>
-              </div>
-              <p class="reviews__text">
-                Шикарний магазин! Рослини здорові, ціни чесні, а ще є безкоштовна порада від флориста. Всім рекомендую Flora!
-              </p>
-            </li>
-
-          </ul>
         </div>
       </section>
 
     </main>
 
-    <!-- =============================================
-         FOOTER — підвал сайту
-         ============================================= -->
+    <!-- ================================================
+         FOOTER
+         ================================================ -->
     <footer class="footer">
-      <div class="container footer__container">
+      <div class="container footer__top">
 
-        <!-- Логотип у футері — теж посилання на головну -->
-        <a href="./index.html" class="footer__logo" aria-label="Flora — повернутися на головну">
-          <svg width="104" height="24" aria-hidden="true">
-            <use href="images/icons.svg#icon-logo-light"></use>
-          </svg>
+        <a href="./index.html" class="footer__logo" aria-label="Flora — go to homepage">
+          <img
+            src="images/logo-large.svg"
+            alt="Flora logo"
+            width="160"
+            height="72"
+          />
         </a>
 
-        <!-- Навігація футера -->
-        <nav class="footer__nav" aria-label="Навігація підвалу">
+        <nav class="footer__nav" aria-label="Footer navigation">
           <ul class="footer__nav-list">
-            <li class="footer__nav-item">
-              <a href="#benefits" class="footer__nav-link">Переваги</a>
-            </li>
-            <li class="footer__nav-item">
-              <a href="#products" class="footer__nav-link">Каталог</a>
-            </li>
-            <li class="footer__nav-item">
-              <a href="#about" class="footer__nav-link">Про нас</a>
-            </li>
-            <li class="footer__nav-item">
-              <a href="#reviews" class="footer__nav-link">Відгуки</a>
-            </li>
+            <li><a href="#about" class="footer__nav-link">About Us</a></li>
+            <li><a href="#bestsellers" class="footer__nav-link">Bestsellers</a></li>
+            <li><a href="#bouquets" class="footer__nav-link">Bouquets</a></li>
+            <li><a href="#feedback" class="footer__nav-link">Feedback</a></li>
+            <li><a href="#contacts" class="footer__nav-link">Contacts</a></li>
           </ul>
         </nav>
 
-        <!-- Контакти -->
-        <address class="footer__contacts">
-          <a href="tel:+380441234567" class="footer__contact-link">+38 (044) 123-45-67</a>
-          <a href="mailto:hello@flora.ua" class="footer__contact-link">hello@flora.ua</a>
-        </address>
-
-        <!-- Соцмережі -->
         <ul class="footer__socials">
-          <li class="footer__socials-item">
-            <a
-              href="https://instagram.com"
-              class="footer__social-link"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram Flora"
-            >
-              <svg width="24" height="24" aria-hidden="true">
-                <use href="images/icons.svg#icon-instagram"></use>
-              </svg>
-            </a>
-          </li>
-          <li class="footer__socials-item">
+          <li>
             <a
               href="https://facebook.com"
               class="footer__social-link"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Facebook Flora"
+              aria-label="Flora on Facebook"
             >
               <svg width="24" height="24" aria-hidden="true">
                 <use href="images/icons.svg#icon-facebook"></use>
               </svg>
             </a>
           </li>
-          <li class="footer__socials-item">
+          <li>
             <a
-              href="https://t.me/flora_ua"
+              href="https://instagram.com"
               class="footer__social-link"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Telegram Flora"
+              aria-label="Flora on Instagram"
             >
               <svg width="24" height="24" aria-hidden="true">
-                <use href="images/icons.svg#icon-telegram"></use>
+                <use href="images/icons.svg#icon-instagram"></use>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://x.com"
+              class="footer__social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Flora on X"
+            >
+              <svg width="24" height="24" aria-hidden="true">
+                <use href="images/icons.svg#icon-x"></use>
               </svg>
             </a>
           </li>
         </ul>
 
-        <p class="footer__copy">&copy; 2026 Flora. Усі права захищені.</p>
+      </div>
 
+      <div class="footer__bottom">
+        <div class="container">
+          <p class="footer__copy">&copy; 2026 Flora. All rights reserved.</p>
+        </div>
       </div>
     </footer>
 
-    <!-- SVG-спрайт прихований від користувача, але доступний через <use> -->
-    <!-- Файл: images/icons.svg -->
+    <!-- ================================================
+         MODAL: PRODUCT DETAILS
+         ================================================ -->
+    <div
+      class="modal"
+      id="modal-product"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Product details"
+    >
+      <div class="modal__backdrop js-modal-close"></div>
+      <div class="modal__content modal__content--product">
+        <button
+          class="modal__close js-modal-close"
+          type="button"
+          aria-label="Close modal"
+        >
+          <svg width="24" height="24" aria-hidden="true">
+            <use href="images/icons.svg#icon-close"></use>
+          </svg>
+        </button>
 
-    <!-- JS для мобільного меню (toggle класу is-open) -->
+        <div class="product-modal">
+          <div class="product-modal__image-wrap">
+            <img
+              src="images/bestsellers/spring-elegance.jpg"
+              alt="Spring Elegance bouquet"
+              width="480"
+              height="520"
+              class="product-modal__img"
+            />
+          </div>
+          <div class="product-modal__info">
+            <h2 class="product-modal__title">Spring Elegance</h2>
+            <p class="product-modal__price">$35</p>
+            <p class="product-modal__desc">
+              Each stem is carefully selected to create a bouquet that radiates
+              freshness, elegance, and the gentle charm of spring. Whether
+              you're celebrating a birthday, sending love, or simply brightening
+              someone's day, this arrangement is sure to bring warm smiles and
+              lasting impressions.
+            </p>
+            <div class="product-modal__actions">
+              <button
+                class="btn btn--primary product-modal__buy"
+                type="button"
+                data-modal-open="order"
+              >
+                Buy now
+              </button>
+              <div class="product-modal__qty">
+                <input
+                  type="number"
+                  class="product-modal__qty-input"
+                  value="1"
+                  min="1"
+                  aria-label="Quantity"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================
+         MODAL: ORDER
+         ================================================ -->
+    <div
+      class="modal"
+      id="modal-order"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Order form"
+    >
+      <div class="modal__backdrop js-modal-close"></div>
+      <div class="modal__content modal__content--order">
+        <button
+          class="modal__close js-modal-close"
+          type="button"
+          aria-label="Close modal"
+        >
+          <svg width="24" height="24" aria-hidden="true">
+            <use href="images/icons.svg#icon-close"></use>
+          </svg>
+        </button>
+
+        <h2 class="order-modal__title">Order</h2>
+
+        <div class="order-modal__form">
+          <div class="order-modal__field">
+            <label class="order-modal__label" for="order-name">Name*</label>
+            <input
+              class="order-modal__input"
+              type="text"
+              id="order-name"
+              name="name"
+              placeholder="Ann"
+              required
+            />
+          </div>
+          <div class="order-modal__field">
+            <label class="order-modal__label" for="order-phone">Phone*</label>
+            <input
+              class="order-modal__input"
+              type="tel"
+              id="order-phone"
+              name="phone"
+              placeholder="+1 (555) 123-4567"
+              required
+            />
+          </div>
+          <div class="order-modal__field">
+            <label class="order-modal__label" for="order-address">Adress</label>
+            <input
+              class="order-modal__input"
+              type="text"
+              id="order-address"
+              name="address"
+              placeholder="456 Floral Ave, Sydney NSW 2000 AU"
+            />
+          </div>
+          <div class="order-modal__field">
+            <label class="order-modal__label" for="order-message">Message</label>
+            <textarea
+              class="order-modal__textarea"
+              id="order-message"
+              name="message"
+              placeholder="Type your message..."
+              rows="5"
+            ></textarea>
+          </div>
+          <button class="btn btn--primary order-modal__submit" type="button">
+            Go to Checkout
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- JS мобільне меню -->
     <script src="js/mobile-menu.js"></script>
-
   </body>
 </html>
