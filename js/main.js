@@ -1,7 +1,7 @@
 // Flora — main.js
 // Author: Serhii Babiian
 
-const API_BASE = 'https://flora-backend-g6bx.onrender.com/api';
+const API_BASE = 'http://localhost:3001';
 const ITEMS_PER_PAGE = 4;
 
 const state = {
@@ -63,9 +63,11 @@ async function fetchBouquets({ page = 1, category = 'all' } = {}) {
 
 async function fetchBestsellers() {
   try {
-    const response = await axios.get(`${API_BASE}/bestsellers`);
-    console.log('Bestsellers response:', response.data);
-    return Array.isArray(response.data) ? response.data : [];
+    const response = await axios.get(`${API_BASE}/bouquets?_limit=3`);
+    const raw = response.data;
+    // Handle both array and wrapped response
+    const data = Array.isArray(raw) ? raw : (raw.items || raw.data || []);
+    return data.slice(0, 3);
   } catch (error) {
     console.error('Fetch bestsellers error:', error);
     return [];
