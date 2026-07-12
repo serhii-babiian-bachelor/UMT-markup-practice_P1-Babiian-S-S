@@ -1,7 +1,7 @@
 // Flora — main.js
 // Author: Serhii Babiian
 
-const API_BASE = 'http://localhost:3001';
+const API_BASE = 'https://flora-backend-g6bx.onrender.com/api';
 const ITEMS_PER_PAGE = 4;
 
 const state = {
@@ -17,45 +17,27 @@ const filterBtns = document.querySelectorAll('[data-filter]');
 const bestsellersSlider = document.querySelector('.bestsellers__list');
 
 // ============================================
-// API — json-server v1 uses _page/_per_page
+// API
 // ============================================
 async function fetchBouquets({ page = 1, category = 'all' } = {}) {
   try {
-    let url = `${API_BASE}/bouquets?_page=${page}&_per_page=${ITEMS_PER_PAGE}`;
+    const offset = (page - 1) * ITEMS_PER_PAGE;
+    let url = `${API_BASE}/bouquets?_start=${offset}&_limit=${ITEMS_PER_PAGE}`;
     if (category !== 'all') url += `&category=${category}`;
 
     const response = await axios.get(url);
-    console.log('Bouquets raw response:', response.data);
-
     const raw = response.data;
+    const total = parseInt(response.headers['x-total-count'] || 0, 10) || raw.length;
 
-    // json-server v1: { first, prev, next, last, pages, items: [...] }
-    if (raw && typeof raw === 'object' && !Array.isArray(raw) && Array.isArray(raw.items)) {
-      console.log('Format: json-server v1 — items array, pages:', raw.pages);
-      const totalPages = raw.pages || 1;
-      return { data: raw.items, total: raw.pages * ITEMS_PER_PAGE, pages: totalPages };
-    }
-
-    // json-server v1 alt: { data: [...], items: N, pages: N }
-    if (raw && typeof raw === 'object' && !Array.isArray(raw) && Array.isArray(raw.data)) {
-      console.log('Format: json-server v1 (wrapped data)');
-      return { data: raw.data, total: raw.items || 0, pages: raw.pages || 1 };
-    }
-
-    // json-server v0: plain array
-    if (Array.isArray(raw)) {
-      console.log('Format: json-server v0 (plain array)');
-      const total = parseInt(response.headers['x-total-count'] || raw.length, 10);
-      return { data: raw, total, pages: Math.ceil(total / ITEMS_PER_PAGE) };
-    }
-
-    console.warn('Unknown response format:', raw);
-    return { data: [], total: 0, pages: 0 };
-
+    return {
+      data: Array.isArray(raw) ? raw : [],
+      total,
+      pages: Math.ceil(total / ITEMS_PER_PAGE),
+    };
   } catch (error) {
     console.error('Fetch bouquets error:', error);
     if (bouquetsList) {
-      bouquetsList.innerHTML = '<li class="bouquets__error"><p>Failed to load. Check that json-server is running on port 3001.</p></li>';
+      bouquetsList.innerHTML = '<li class="bouquets__error"><p>Failed to load bouquets.</p></li>';
     }
     return { data: [], total: 0, pages: 0 };
   }
@@ -65,9 +47,7 @@ async function fetchBestsellers() {
   try {
     const response = await axios.get(`${API_BASE}/bouquets?_limit=3`);
     const raw = response.data;
-    // Handle both array and wrapped response
-    const data = Array.isArray(raw) ? raw : (raw.items || raw.data || []);
-    return data.slice(0, 3);
+    return Array.isArray(raw) ? raw.slice(0, 3) : [];
   } catch (error) {
     console.error('Fetch bestsellers error:', error);
     return [];
@@ -75,42 +55,58 @@ async function fetchBestsellers() {
 }
 
 // ============================================
-// TEMPLATES
+// TEMPLATES — API returns: title, description, price, photoURL, category
 // ============================================
 function createBouquetCard(b) {
+  const img = b.photoURL || '';
+  const name = b.title || '';
+  const desc = b.description || '';
+  const price = b.price || 0;
+
   return `<li class="bouquets__item">
     <button class="bouquets__card-btn" type="button"
-      aria-label="View details for ${b.name}"
-      data-name="${b.name}" data-price="${b.price}"
-      data-desc="${b.description}"
-      data-img="${b.image}" data-img2x="${b.image2x || b.image}">
+      aria-label="View details for ${name}"
+      data-name="${name}"
+      data-price="${price}"
+      data-desc="${desc}"
+      data-img="${img}"
+      data-img2x="${img}">
       <div class="bouquets__thumb">
-        <img src="${b.image}"
-          srcset="${b.image} 1x, ${b.image2x || b.image} 2x"
-          alt="${b.name} bouquet" width="280" height="220" loading="lazy"/>
+        <img src="${img}"
+          srcset="${img} 1x, ${img} 2x"
+          alt="${name} bouquet"
+          width="280" height="220" loading="lazy"/>
       </div>
-      <h3 class="bouquets__name">${b.name}</h3>
-      <p class="bouquets__desc">${b.description}</p>
-      <p class="bouquets__price">$${b.price}</p>
+      <h3 class="bouquets__name">${name}</h3>
+      <p class="bouquets__desc">${desc}</p>
+      <p class="bouquets__price">$${price}</p>
     </button>
   </li>`;
 }
 
 function createBestsellerCard(b) {
+  const img = b.photoURL || '';
+  const name = b.title || '';
+  const desc = b.description || '';
+  const price = b.price || 0;
+
   return `<li class="bestsellers__item">
     <button class="bestsellers__card-btn" type="button"
-      aria-label="View details for ${b.name}"
-      data-name="${b.name}" data-price="${b.price}"
-      data-desc="${b.description}"
-      data-img="${b.image}" data-img2x="${b.image2x || b.image}">
+      aria-label="View details for ${name}"
+      data-name="${name}"
+      data-price="${price}"
+      data-desc="${desc}"
+      data-img="${img}"
+      data-img2x="${img}">
       <div class="bestsellers__thumb">
-        <img src="${b.image}"
-          srcset="${b.image} 1x, ${b.image2x || b.image} 2x"
-          alt="${b.name} bouquet" width="430" height="310" loading="lazy"/>
+        <img src="${img}"
+          srcset="${img} 1x, ${img} 2x"
+          alt="${name} bouquet"
+          width="430" height="310" loading="lazy"/>
       </div>
-      <h3 class="bestsellers__name">${b.name}</h3>
-      <p class="bestsellers__desc">${b.description}</p>
-      <p class="bestsellers__price">$${b.price}</p>
+      <h3 class="bestsellers__name">${name}</h3>
+      <p class="bestsellers__desc">${desc}</p>
+      <p class="bestsellers__price">$${price}</p>
     </button>
   </li>`;
 }
@@ -139,7 +135,7 @@ function renderBestsellers(items) {
 
 function updateShowMoreBtn(total, pages) {
   if (!showMoreBtn) return;
-  const hide = pages ? state.page >= pages : state.page * ITEMS_PER_PAGE >= total;
+  const hide = state.page >= pages;
   showMoreBtn.style.display = hide ? 'none' : 'block';
 }
 
@@ -224,49 +220,34 @@ document.querySelectorAll('[data-modal-open="order"]').forEach(btn => {
   });
 });
 
+function openProductModal(btn) {
+  if (!modalProduct) return;
+  const modalImg = modalProduct.querySelector('.product-modal__img');
+  const modalTitle = modalProduct.querySelector('.product-modal__title');
+  const modalPrice = modalProduct.querySelector('.product-modal__price');
+  const modalDesc = modalProduct.querySelector('.product-modal__desc');
+
+  if (modalImg) {
+    modalImg.src = btn.dataset.img;
+    modalImg.srcset = `${btn.dataset.img} 1x, ${btn.dataset.img2x} 2x`;
+    modalImg.alt = btn.dataset.name + ' bouquet';
+  }
+  if (modalTitle) modalTitle.textContent = btn.dataset.name;
+  if (modalPrice) modalPrice.textContent = `$${btn.dataset.price}`;
+  if (modalDesc) modalDesc.textContent = btn.dataset.desc;
+
+  openModal(modalProduct);
+}
+
 function bindBestsellerButtons() {
   document.querySelectorAll('.bestsellers__card-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      if (!modalProduct) return;
-      const modalImg = modalProduct.querySelector('.product-modal__img');
-      const modalTitle = modalProduct.querySelector('.product-modal__title');
-      const modalPrice = modalProduct.querySelector('.product-modal__price');
-      const modalDesc = modalProduct.querySelector('.product-modal__desc');
-
-      if (modalImg) {
-        modalImg.src = btn.dataset.img;
-        modalImg.srcset = `${btn.dataset.img} 1x, ${btn.dataset.img2x} 2x`;
-        modalImg.alt = btn.dataset.name + ' bouquet';
-      }
-      if (modalTitle) modalTitle.textContent = btn.dataset.name;
-      if (modalPrice) modalPrice.textContent = `$${btn.dataset.price}`;
-      if (modalDesc) modalDesc.textContent = btn.dataset.desc;
-
-      openModal(modalProduct);
-    });
+    btn.addEventListener('click', () => openProductModal(btn));
   });
 }
 
 function bindCardButtons() {
   document.querySelectorAll('.bouquets__card-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      if (!modalProduct) return;
-      const modalImg = modalProduct.querySelector('.product-modal__img');
-      const modalTitle = modalProduct.querySelector('.product-modal__title');
-      const modalPrice = modalProduct.querySelector('.product-modal__price');
-      const modalDesc = modalProduct.querySelector('.product-modal__desc');
-
-      if (modalImg) {
-        modalImg.src = btn.dataset.img;
-        modalImg.srcset = `${btn.dataset.img} 1x, ${btn.dataset.img2x} 2x`;
-        modalImg.alt = btn.dataset.name + ' bouquet';
-      }
-      if (modalTitle) modalTitle.textContent = btn.dataset.name;
-      if (modalPrice) modalPrice.textContent = `$${btn.dataset.price}`;
-      if (modalDesc) modalDesc.textContent = btn.dataset.desc;
-
-      openModal(modalProduct);
-    });
+    btn.addEventListener('click', () => openProductModal(btn));
   });
 }
 
@@ -336,11 +317,9 @@ if (orderForm) {
 // INIT
 // ============================================
 async function init() {
-  console.log('Flora app initializing...');
   const bestsellers = await fetchBestsellers();
   renderBestsellers(bestsellers);
   await loadBouquets(false);
-  console.log('Flora app ready');
 }
 
 init();
