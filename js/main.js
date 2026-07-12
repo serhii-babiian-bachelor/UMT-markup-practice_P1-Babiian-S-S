@@ -1,7 +1,7 @@
 // Flora — main.js
 // Author: Serhii Babiian
 
-const API_BASE = 'http://localhost:3001';
+const API_BASE = 'https://flora-backend-g6bx.onrender.com/api';
 const ITEMS_PER_PAGE = 4;
 
 const state = {
