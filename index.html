@@ -11,24 +11,24 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css"
     />
 
-    <!-- Google Fonts: Playfair Display + Inter — одне посилання -->
+    <!-- Google Fonts: Hanuman + Roboto — single link -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Hanuman:wght@100;300;400;700;900&family=Roboto:wght@300;400;500;700&display=swap"
       rel="stylesheet"
     />
 
-    <!-- Animate.css — бібліотека анімацій (Блок 4) -->
+    <!-- Animate.css — animation library (Block 4) -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
 
-    <!-- Стилі проєкту — Serhii Babiian -->
+    <!-- Project styles — Serhii Babiian -->
     <link rel="stylesheet" href="css/styles.css" />
 
-    <!-- Фавікон -->
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/favicon.png" />
   </head>
 
@@ -90,7 +90,7 @@
     </header>
 
     <!-- ================================================
-         MOBILE MENU (Блок 5)
+         MOBILE MENU (Block 5)
          ================================================ -->
     <div
       class="mobile-menu"
@@ -221,62 +221,8 @@
 
           <div class="bestsellers__slider-wrap">
             <ul class="bestsellers__list">
-
-              <li class="bestsellers__item">
-                <div class="bestsellers__thumb">
-                  <img
-                    src="images/bestsellers/spring-elegance.jpg"
-                    alt="Spring Elegance — pink tulips, peonies and roses on blue background"
-                    width="430"
-                    height="310"
-                    loading="lazy"
-                  />
-                </div>
-                <h3 class="bestsellers__name">Spring Elegance</h3>
-                <p class="bestsellers__desc">
-                  A delicate blend of peonies, tulips, and roses — perfect for
-                  springtime gifting and bright smiles.
-                </p>
-                <p class="bestsellers__price">$35</p>
-              </li>
-
-              <li class="bestsellers__item">
-                <div class="bestsellers__thumb">
-                  <img
-                    src="images/bestsellers/berry-chic.jpg"
-                    alt="Berry Chic — roses and seasonal greenery with vibrant berries"
-                    width="430"
-                    height="310"
-                    loading="lazy"
-                  />
-                </div>
-                <h3 class="bestsellers__name">Berry Chic</h3>
-                <p class="bestsellers__desc">
-                  A stylish composition of roses, seasonal greenery, and
-                  vibrant berries — a bold and elegant floral statement.
-                </p>
-                <p class="bestsellers__price">$40</p>
-              </li>
-
-              <li class="bestsellers__item">
-                <div class="bestsellers__thumb">
-                  <img
-                    src="images/bestsellers/lavender-dream.jpg"
-                    alt="Lavender Dream — lavender, lisianthus and roses in deep purple tones"
-                    width="430"
-                    height="310"
-                    loading="lazy"
-                  />
-                </div>
-                <h3 class="bestsellers__name">Lavender Dream</h3>
-                <p class="bestsellers__desc">
-                  A rich bouquet with lavender, lisianthus, and roses — ideal
-                  for those who love deep hues and gentle fragrance.
-                </p>
-                <p class="bestsellers__price">$55</p>
-              </li>
-
-            </ul>
+            <!-- Dynamic content loaded via API -->
+          </ul>
 
             <!-- Slider dots -->
             <div class="bestsellers__dots" aria-label="Slider navigation">
@@ -291,12 +237,12 @@
             <!-- Slider arrows -->
             <div class="bestsellers__arrows">
               <button class="slider-arrow" type="button" aria-label="Previous slide">
-                <svg width="20" height="20" aria-hidden="true">
+                <svg width="24" height="24" aria-hidden="true">
                   <use href="images/icons.svg#icon-arrow-left"></use>
                 </svg>
               </button>
               <button class="slider-arrow" type="button" aria-label="Next slide">
-                <svg width="20" height="20" aria-hidden="true">
+                <svg width="24" height="24" aria-hidden="true">
                   <use href="images/icons.svg#icon-arrow-right"></use>
                 </svg>
               </button>
@@ -315,208 +261,16 @@
             Explore our stunning selection of fresh flower bouquets.
           </a>
 
+          <!-- Filter buttons -->
+          <div class="bouquets__filters" role="group" aria-label="Filter bouquets">
+            <button class="bouquets__filter-btn bouquets__filter-btn--active" type="button" data-filter="all">All</button>
+            <button class="bouquets__filter-btn" type="button" data-filter="classic">Classic</button>
+            <button class="bouquets__filter-btn" type="button" data-filter="basket">Basket</button>
+            <button class="bouquets__filter-btn" type="button" data-filter="box">Box</button>
+          </div>
+
           <ul class="bouquets__list">
-
-            <li class="bouquets__item">
-              <button
-                class="bouquets__card-btn"
-                type="button"
-                aria-label="View details for Peach Meadow"
-                data-modal="product"
-              >
-                <div class="bouquets__thumb">
-                  <img
-                    src="images/bouquets/peach-meadow.jpg"
-                    alt="Peach Meadow — peach and blush roses in a straw basket"
-                    width="280"
-                    height="220"
-                    loading="lazy"
-                  />
-                </div>
-                <h3 class="bouquets__name">Peach Meadow</h3>
-                <p class="bouquets__desc">
-                  A soft and radiant arrangement of peach and blush roses with
-                  lush greenery in a straw basket — light and natural.
-                </p>
-                <p class="bouquets__price">$55</p>
-              </button>
-            </li>
-
-            <li class="bouquets__item">
-              <button
-                class="bouquets__card-btn"
-                type="button"
-                aria-label="View details for Blush Romance"
-                data-modal="product"
-              >
-                <div class="bouquets__thumb">
-                  <img
-                    src="images/bouquets/blush-romance.jpg"
-                    alt="Blush Romance — deep pink and ivory roses with silver eucalyptus"
-                    width="280"
-                    height="220"
-                    loading="lazy"
-                  />
-                </div>
-                <h3 class="bouquets__name">Blush Romance</h3>
-                <p class="bouquets__desc">
-                  A premium bouquet of deep pink and ivory roses, complemented
-                  by silver eucalyptus — sophisticated and intimate.
-                </p>
-                <p class="bouquets__price">$34</p>
-              </button>
-            </li>
-
-            <li class="bouquets__item">
-              <button
-                class="bouquets__card-btn"
-                type="button"
-                aria-label="View details for Pastel Garden"
-                data-modal="product"
-              >
-                <div class="bouquets__thumb">
-                  <img
-                    src="images/bouquets/pastel-garden.jpg"
-                    alt="Pastel Garden — spray roses and greenery in a woven basket"
-                    width="280"
-                    height="220"
-                    loading="lazy"
-                  />
-                </div>
-                <h3 class="bouquets__name">Pastel Garden</h3>
-                <p class="bouquets__desc">
-                  A pastel-toned mix of spray roses and greenery in a woven
-                  basket — gentle, airy, and perfect for any occasion.
-                </p>
-                <p class="bouquets__price">$40</p>
-              </button>
-            </li>
-
-            <li class="bouquets__item">
-              <button
-                class="bouquets__card-btn"
-                type="button"
-                aria-label="View details for Tulip Charm"
-                data-modal="product"
-              >
-                <div class="bouquets__thumb">
-                  <img
-                    src="images/bouquets/tulip-charm.jpg"
-                    alt="Tulip Charm — bright tulips and roses in a lavender box"
-                    width="280"
-                    height="220"
-                    loading="lazy"
-                  />
-                </div>
-                <h3 class="bouquets__name">Tulip Charm</h3>
-                <p class="bouquets__desc">
-                  A vivid bouquet of bright tulips and roses in a lavender
-                  box — cheerful and full of charm.
-                </p>
-                <p class="bouquets__price">$61</p>
-              </button>
-            </li>
-
-            <li class="bouquets__item">
-              <button
-                class="bouquets__card-btn"
-                type="button"
-                aria-label="View details for Berry Bloom"
-                data-modal="product"
-              >
-                <div class="bouquets__thumb">
-                  <img
-                    src="images/bouquets/berry-bloom.jpg"
-                    alt="Berry Bloom — rich pink, purple and cream blooms with textured greens"
-                    width="280"
-                    height="220"
-                    loading="lazy"
-                  />
-                </div>
-                <h3 class="bouquets__name">Berry Bloom</h3>
-                <p class="bouquets__desc">
-                  A lush mix of rich pink, purple, and cream blooms with
-                  textured greens — romantic and elegant.
-                </p>
-                <p class="bouquets__price">$32</p>
-              </button>
-            </li>
-
-            <li class="bouquets__item">
-              <button
-                class="bouquets__card-btn"
-                type="button"
-                aria-label="View details for Sweet Whisper"
-                data-modal="product"
-              >
-                <div class="bouquets__thumb">
-                  <img
-                    src="images/bouquets/sweet-whisper.jpg"
-                    alt="Sweet Whisper — peonies, roses and lilac-toned accents in a wicker basket"
-                    width="280"
-                    height="220"
-                    loading="lazy"
-                  />
-                </div>
-                <h3 class="bouquets__name">Sweet Whisper</h3>
-                <p class="bouquets__desc">
-                  A charming spring bouquet with peonies, roses, and
-                  lilac-toned accents — fresh, lively, and expressive.
-                </p>
-                <p class="bouquets__price">$40</p>
-              </button>
-            </li>
-
-            <li class="bouquets__item">
-              <button
-                class="bouquets__card-btn"
-                type="button"
-                aria-label="View details for Field Joy"
-                data-modal="product"
-              >
-                <div class="bouquets__thumb">
-                  <img
-                    src="images/bouquets/field-joy.jpg"
-                    alt="Field Joy — rustic hand-tied sunflowers, lisianthus and daisies"
-                    width="280"
-                    height="220"
-                    loading="lazy"
-                  />
-                </div>
-                <h3 class="bouquets__name">Field Joy</h3>
-                <p class="bouquets__desc">
-                  A rustic hand-tied bouquet of sunflowers, lisianthus, and
-                  daisies — perfect for brightening the day.
-                </p>
-                <p class="bouquets__price">$49</p>
-              </button>
-            </li>
-
-            <li class="bouquets__item">
-              <button
-                class="bouquets__card-btn"
-                type="button"
-                aria-label="View details for Soft Bloom"
-                data-modal="product"
-              >
-                <div class="bouquets__thumb">
-                  <img
-                    src="images/bouquets/soft-bloom.jpg"
-                    alt="Soft Bloom — pink carnations and roses wrapped in satin paper"
-                    width="280"
-                    height="220"
-                    loading="lazy"
-                  />
-                </div>
-                <h3 class="bouquets__name">Soft Bloom</h3>
-                <p class="bouquets__desc">
-                  A delicate bouquet of pink carnations and roses wrapped in
-                  satin paper — soft, stylish, and versatile.
-                </p>
-                <p class="bouquets__price">$37</p>
-              </button>
-            </li>
-
+            <!-- Dynamic content loaded via API -->
           </ul>
 
           <button class="btn btn--primary bouquets__show-more" type="button">
@@ -575,12 +329,12 @@
             <!-- Slider arrows -->
             <div class="feedback__arrows">
               <button class="slider-arrow" type="button" aria-label="Previous review">
-                <svg width="20" height="20" aria-hidden="true">
+                <svg width="24" height="24" aria-hidden="true">
                   <use href="images/icons.svg#icon-arrow-left"></use>
                 </svg>
               </button>
               <button class="slider-arrow" type="button" aria-label="Next review">
-                <svg width="20" height="20" aria-hidden="true">
+                <svg width="24" height="24" aria-hidden="true">
                   <use href="images/icons.svg#icon-arrow-right"></use>
                 </svg>
               </button>
@@ -620,7 +374,14 @@
                 <div>
                   <p class="contacts__item-label">Store</p>
                   <address class="contacts__address">
-                    456 Floral Ave, Sydney NSW 2000 AU
+                    <a
+                      href="https://maps.google.com/?q=456+Floral+Ave+Sydney+NSW+2000"
+                      class="contacts__link"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      456 Floral Ave, Sydney NSW 2000 AU
+                    </a>
                   </address>
                 </div>
               </li>
@@ -676,7 +437,7 @@
               rel="noopener noreferrer"
               aria-label="Flora on Facebook"
             >
-              <svg width="24" height="24" aria-hidden="true">
+              <svg width="40" height="40" aria-hidden="true">
                 <use href="images/icons.svg#icon-facebook"></use>
               </svg>
             </a>
@@ -689,7 +450,7 @@
               rel="noopener noreferrer"
               aria-label="Flora on Instagram"
             >
-              <svg width="24" height="24" aria-hidden="true">
+              <svg width="40" height="40" aria-hidden="true">
                 <use href="images/icons.svg#icon-instagram"></use>
               </svg>
             </a>
@@ -702,7 +463,7 @@
               rel="noopener noreferrer"
               aria-label="Flora on X"
             >
-              <svg width="24" height="24" aria-hidden="true">
+              <svg width="40" height="40" aria-hidden="true">
                 <use href="images/icons.svg#icon-x"></use>
               </svg>
             </a>
@@ -713,7 +474,7 @@
 
       <div class="footer__bottom">
         <div class="container">
-          <p class="footer__copy">&copy; 2026 Flora. All rights reserved.</p>
+          <p class="footer__copy">&copy; 2025 Flora. All rights reserved.</p>
         </div>
       </div>
     </footer>
@@ -807,7 +568,7 @@
 
         <h2 class="order-modal__title">Order</h2>
 
-        <div class="order-modal__form">
+        <form class="order-modal__form" name="order-form" novalidate>
           <div class="order-modal__field">
             <label class="order-modal__label" for="order-name">Name*</label>
             <input
@@ -850,14 +611,37 @@
               rows="5"
             ></textarea>
           </div>
-          <button class="btn btn--primary order-modal__submit" type="button">
+
+          <!-- Custom SVG checkbox for license agreement -->
+          <div class="order-modal__field order-modal__field--checkbox">
+            <label class="order-modal__checkbox-label" for="order-license">
+              <input
+                class="order-modal__checkbox-input visually-hidden"
+                type="checkbox"
+                id="order-license"
+                name="license"
+                required
+              />
+              <span class="order-modal__checkbox-custom" aria-hidden="true">
+                <svg class="order-modal__checkbox-icon" width="16" height="16">
+                  <use href="images/icons.svg#icon-checkmark"></use>
+                </svg>
+              </span>
+              <span class="order-modal__checkbox-text">
+                I agree to the <a href="#" class="order-modal__policy-link">Privacy Policy</a>
+              </span>
+            </label>
+          </div>
+
+          <button class="btn btn--primary order-modal__submit" type="submit">
             Go to Checkout
           </button>
-        </div>
+        </form>
       </div>
     </div>
 
-    <!-- JS мобільне меню -->
-    <script src="js/mobile-menu.js"></script>
+    <!-- JS: mobile menu & modals -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="js/main.js"></script>
   </body>
 </html>

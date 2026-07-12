@@ -1,0 +1,162 @@
+{
+  "bouquets": [
+    {
+      "id": "1",
+      "name": "Peach Meadow",
+      "description": "A soft and radiant arrangement of peach and blush roses with lush greenery in a straw basket — light and natural.",
+      "price": 55,
+      "image": "images/bouquets/peach-meadow.jpg",
+      "image2x": "images/bouquets/peach-meadow.jpg",
+      "category": "basket"
+    },
+    {
+      "id": "2",
+      "name": "Blush Romance",
+      "description": "A premium bouquet of deep pink and ivory roses, complemented by silver eucalyptus — sophisticated and intimate.",
+      "price": 34,
+      "image": "images/bouquets/blush-romance.jpg",
+      "image2x": "images/bouquets/blush-romance.jpg",
+      "category": "classic"
+    },
+    {
+      "id": "3",
+      "name": "Pastel Garden",
+      "description": "A pastel-toned mix of spray roses and greenery in a woven basket — gentle, airy, and perfect for any occasion.",
+      "price": 40,
+      "image": "images/bouquets/pastel-garden.jpg",
+      "image2x": "images/bouquets/pastel-garden.jpg",
+      "category": "basket"
+    },
+    {
+      "id": "4",
+      "name": "Tulip Charm",
+      "description": "A vivid bouquet of bright tulips and roses in a lavender box — cheerful and full of charm.",
+      "price": 61,
+      "image": "images/bouquets/tulip-charm.jpg",
+      "image2x": "images/bouquets/tulip-charm.jpg",
+      "category": "box"
+    },
+    {
+      "id": "5",
+      "name": "Berry Bloom",
+      "description": "A lush mix of rich pink, purple, and cream blooms with textured greens — romantic and elegant.",
+      "price": 32,
+      "image": "images/bouquets/berry-bloom.jpg",
+      "image2x": "images/bouquets/berry-bloom.jpg",
+      "category": "classic"
+    },
+    {
+      "id": "6",
+      "name": "Sweet Whisper",
+      "description": "A charming spring bouquet with peonies, roses, and lilac-toned accents — fresh, lively, and expressive.",
+      "price": 40,
+      "image": "images/bouquets/sweet-whisper.jpg",
+      "image2x": "images/bouquets/sweet-whisper.jpg",
+      "category": "basket"
+    },
+    {
+      "id": "7",
+      "name": "Field Joy",
+      "description": "A rustic hand-tied bouquet of sunflowers, lisianthus, and daisies — perfect for brightening the day.",
+      "price": 49,
+      "image": "images/bouquets/field-joy.jpg",
+      "image2x": "images/bouquets/field-joy.jpg",
+      "category": "classic"
+    },
+    {
+      "id": "8",
+      "name": "Soft Bloom",
+      "description": "A delicate bouquet of pink carnations and roses wrapped in satin paper — soft, stylish, and versatile.",
+      "price": 37,
+      "image": "images/bouquets/soft-bloom.jpg",
+      "image2x": "images/bouquets/soft-bloom.jpg",
+      "category": "classic"
+    },
+    {
+      "id": "9",
+      "name": "Spring Elegance",
+      "description": "A delicate blend of peonies, tulips, and roses — perfect for springtime gifting and bright smiles.",
+      "price": 35,
+      "image": "images/bestsellers/spring-elegance.jpg",
+      "image2x": "images/bestsellers/spring-elegance.jpg",
+      "category": "classic"
+    },
+    {
+      "id": "10",
+      "name": "Berry Chic",
+      "description": "A stylish composition of roses, seasonal greenery, and vibrant berries — a bold and elegant floral statement.",
+      "price": 40,
+      "image": "images/bestsellers/berry-chic.jpg",
+      "image2x": "images/bestsellers/berry-chic.jpg",
+      "category": "classic"
+    },
+    {
+      "id": "11",
+      "name": "Lavender Dream",
+      "description": "A rich bouquet with lavender, lisianthus, and roses — ideal for those who love deep hues and gentle fragrance.",
+      "price": 55,
+      "image": "images/bestsellers/lavender-dream.jpg",
+      "image2x": "images/bestsellers/lavender-dream.jpg",
+      "category": "classic"
+    },
+    {
+      "id": "12",
+      "name": "Rose Garden",
+      "description": "A stunning all-rose arrangement in soft pink and cream tones — timeless, elegant, and deeply romantic.",
+      "price": 65,
+      "image": "images/bouquets/peach-meadow.jpg",
+      "image2x": "images/bouquets/peach-meadow.jpg",
+      "category": "classic"
+    }
+  ],
+  "bestsellers": [
+    {
+      "id": "1",
+      "name": "Spring Elegance",
+      "description": "A delicate blend of peonies, tulips, and roses — perfect for springtime gifting and bright smiles.",
+      "price": 35,
+      "image": "images/bestsellers/spring-elegance.jpg",
+      "image2x": "images/bestsellers/spring-elegance.jpg"
+    },
+    {
+      "id": "2",
+      "name": "Berry Chic",
+      "description": "A stylish composition of roses, seasonal greenery, and vibrant berries — a bold and elegant floral statement.",
+      "price": 40,
+      "image": "images/bestsellers/berry-chic.jpg",
+      "image2x": "images/bestsellers/berry-chic.jpg"
+    },
+    {
+      "id": "3",
+      "name": "Lavender Dream",
+      "description": "A rich bouquet with lavender, lisianthus, and roses — ideal for those who love deep hues and gentle fragrance.",
+      "price": 55,
+      "image": "images/bestsellers/lavender-dream.jpg",
+      "image2x": "images/bestsellers/lavender-dream.jpg"
+    }
+  ],
+  "orders": [
+    {
+      "name": "",
+      "phone": "",
+      "address": "",
+      "message": "",
+      "id": "Zy969at3EKE"
+    },
+    {
+      "name": "",
+      "phone": "",
+      "address": "",
+      "message": "",
+      "id": "CwD-z-WqliA"
+    },
+    {
+      "name": "",
+      "phone": "",
+      "address": "",
+      "message": "",
+      "id": "FClIz3dqFK8"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
