@@ -158,5 +158,5 @@
       "id": "FClIz3dqFK8"
     }
   ],
-  "$schema": "./node_modules/json-server/schema.json"
+  "$schema": []
 }
