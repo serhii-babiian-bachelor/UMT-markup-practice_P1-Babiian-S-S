@@ -63,6 +63,7 @@ async function fetchBestsellers() {
 // TEMPLATES — API returns: title, description, price, photoURL, category
 // ============================================
 function createBouquetCard(b) {
+  console.log('BOUQUET OBJECT:', b);
   const img = b.photoURL || '';
   const name = b.title || '';
   const desc = b.description || '';
@@ -90,6 +91,7 @@ function createBouquetCard(b) {
 }
 
 function createBestsellerCard(b) {
+  console.log('BESTSELLER OBJECT:', b);
   const img = b.photoURL || '';
   const name = b.title || '';
   const desc = b.description || '';
