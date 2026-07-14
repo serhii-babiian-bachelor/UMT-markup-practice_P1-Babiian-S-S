@@ -47,10 +47,13 @@ async function fetchBouquets({ page = 1, category = 'all' } = {}) {
 async function fetchBestsellers() {
   try {
     const response = await axios.get(`${API_BASE}/bestsellers`);
-    const raw = response.data;
-    return Array.isArray(raw) ? raw : [];
+
+    console.log('BESTSELLERS:', response.data);
+    console.log('FIRST BESTSELLER:', response.data[0]);
+
+    return Array.isArray(response.data) ? response.data : [];
   } catch (error) {
-    console.error('Fetch bestsellers error:', error);
+    console.error(error);
     return [];
   }
 }
