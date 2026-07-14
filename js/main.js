@@ -27,6 +27,7 @@ async function fetchBouquets({ page = 1, category = 'all' } = {}) {
 
     const response = await axios.get(url);
     const raw = response.data;
+    console.log('FIRST BOUQUET:', raw[0]);
     const total = parseInt(response.headers['x-total-count'] || 0, 10) || raw.length;
 
     return {
@@ -45,14 +46,15 @@ async function fetchBouquets({ page = 1, category = 'all' } = {}) {
 
 async function fetchBestsellers() {
   try {
-    const response = await axios.get(`${API_BASE}/bouquets?_limit=3`);
+    const response = await axios.get(`${API_BASE}/bestsellers`);
     const raw = response.data;
-    return Array.isArray(raw) ? raw.slice(0, 3) : [];
+    return Array.isArray(raw) ? raw : [];
   } catch (error) {
     console.error('Fetch bestsellers error:', error);
     return [];
   }
 }
+
 
 // ============================================
 // TEMPLATES — API returns: title, description, price, photoURL, category
