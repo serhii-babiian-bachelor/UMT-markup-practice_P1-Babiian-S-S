@@ -75,6 +75,7 @@ function createBouquetCard(b) {
 }
 
 function createBestsellerCard(b) {
+    console.log('BESTSELLER ITEM:', b);
   const img = b.photoURL || '';
   const name = b.title || '';
   const desc = b.description || '';
@@ -111,6 +112,7 @@ function renderBouquets(bouquets, append = false) {
 }
 
 function renderBestsellers(items) {
+    console.log('RENDER BESTSELLERS:', items);
   if (!bestsellersSlider || !items.length) return;
   bestsellersSlider.innerHTML = items.map(createBestsellerCard).join('');
   bindBestsellerButtons();
