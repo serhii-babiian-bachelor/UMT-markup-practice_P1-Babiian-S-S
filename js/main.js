@@ -1,4 +1,4 @@
-// v5 - cache bust
+// v6 - cache bust 2025
 // Flora — main.js
 // Author: Serhii Babiian
 
