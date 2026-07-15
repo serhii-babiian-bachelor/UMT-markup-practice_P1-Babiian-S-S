@@ -16,9 +16,6 @@ const showMoreBtn = document.querySelector('.bouquets__show-more');
 const filterBtns = document.querySelectorAll('[data-filter]');
 const bestsellersSlider = document.querySelector('.bestsellers__list');
 
-// ============================================
-// API
-// ============================================
 async function fetchBouquets({ page = 1, category = 'all' } = {}) {
   try {
     const offset = (page - 1) * ITEMS_PER_PAGE;
@@ -27,13 +24,12 @@ async function fetchBouquets({ page = 1, category = 'all' } = {}) {
 
     const response = await axios.get(url);
     const raw = response.data;
-    console.log('FIRST BOUQUET:', raw[0]);
-    const total = parseInt(response.headers['x-total-count'] || 0, 10) || raw.length;
+    const total = parseInt(response.headers['x-total-count'] || 0, 10) || (Array.isArray(raw) ? raw.length : 0);
 
     return {
       data: Array.isArray(raw) ? raw : [],
       total,
-      pages: Math.ceil(total / ITEMS_PER_PAGE),
+      pages: Math.ceil((total || 12) / ITEMS_PER_PAGE),
     };
   } catch (error) {
     console.error('Fetch bouquets error:', error);
@@ -47,23 +43,14 @@ async function fetchBouquets({ page = 1, category = 'all' } = {}) {
 async function fetchBestsellers() {
   try {
     const response = await axios.get(`${API_BASE}/bestsellers`);
-
-    console.log('BESTSELLERS:', response.data);
-    console.log('FIRST BESTSELLER:', response.data[0]);
-
     return Array.isArray(response.data) ? response.data : [];
   } catch (error) {
-    console.error(error);
+    console.error('Fetch bestsellers error:', error);
     return [];
   }
 }
 
-
-// ============================================
-// TEMPLATES — API returns: title, description, price, photoURL, category
-// ============================================
 function createBouquetCard(b) {
-  console.log('BOUQUET OBJECT:', b);
   const img = b.photoURL || '';
   const name = b.title || '';
   const desc = b.description || '';
@@ -72,16 +59,12 @@ function createBouquetCard(b) {
   return `<li class="bouquets__item">
     <button class="bouquets__card-btn" type="button"
       aria-label="View details for ${name}"
-      data-name="${name}"
-      data-price="${price}"
+      data-name="${name}" data-price="${price}"
       data-desc="${desc}"
-      data-img="${img}"
-      data-img2x="${img}">
+      data-img="${img}" data-img2x="${img}">
       <div class="bouquets__thumb">
-        <img src="${img}"
-          srcset="${img} 1x, ${img} 2x"
-          alt="${name} bouquet"
-          width="280" height="220" loading="lazy"/>
+        <img src="${img}" srcset="${img} 1x, ${img} 2x"
+          alt="${name} bouquet" width="280" height="220" loading="lazy"/>
       </div>
       <h3 class="bouquets__name">${name}</h3>
       <p class="bouquets__desc">${desc}</p>
@@ -91,7 +74,6 @@ function createBouquetCard(b) {
 }
 
 function createBestsellerCard(b) {
-  console.log('BESTSELLER OBJECT:', b);
   const img = b.photoURL || '';
   const name = b.title || '';
   const desc = b.description || '';
@@ -100,16 +82,12 @@ function createBestsellerCard(b) {
   return `<li class="bestsellers__item">
     <button class="bestsellers__card-btn" type="button"
       aria-label="View details for ${name}"
-      data-name="${name}"
-      data-price="${price}"
+      data-name="${name}" data-price="${price}"
       data-desc="${desc}"
-      data-img="${img}"
-      data-img2x="${img}">
+      data-img="${img}" data-img2x="${img}">
       <div class="bestsellers__thumb">
-        <img src="${img}"
-          srcset="${img} 1x, ${img} 2x"
-          alt="${name} bouquet"
-          width="430" height="310" loading="lazy"/>
+        <img src="${img}" srcset="${img} 1x, ${img} 2x"
+          alt="${name} bouquet" width="430" height="310" loading="lazy"/>
       </div>
       <h3 class="bestsellers__name">${name}</h3>
       <p class="bestsellers__desc">${desc}</p>
@@ -118,9 +96,6 @@ function createBestsellerCard(b) {
   </li>`;
 }
 
-// ============================================
-// RENDER
-// ============================================
 function renderBouquets(bouquets, append = false) {
   if (!bouquetsList) return;
   if (!append) bouquetsList.innerHTML = '';
@@ -142,13 +117,9 @@ function renderBestsellers(items) {
 
 function updateShowMoreBtn(total, pages) {
   if (!showMoreBtn) return;
-  const hide = state.page >= pages;
-  showMoreBtn.style.display = hide ? 'none' : 'block';
+  showMoreBtn.style.display = state.page >= pages ? 'none' : 'block';
 }
 
-// ============================================
-// LOAD
-// ============================================
 async function loadBouquets(append = false) {
   if (state.isLoading) return;
   state.isLoading = true;
@@ -168,9 +139,6 @@ async function loadBouquets(append = false) {
   state.isLoading = false;
 }
 
-// ============================================
-// SHOW MORE
-// ============================================
 if (showMoreBtn) {
   showMoreBtn.addEventListener('click', async () => {
     state.page += 1;
@@ -178,9 +146,6 @@ if (showMoreBtn) {
   });
 }
 
-// ============================================
-// FILTERS
-// ============================================
 filterBtns.forEach(btn => {
   btn.addEventListener('click', async () => {
     const category = btn.dataset.filter;
@@ -193,9 +158,6 @@ filterBtns.forEach(btn => {
   });
 });
 
-// ============================================
-// MODALS
-// ============================================
 const modalProduct = document.querySelector('#modal-product');
 const modalOrder = document.querySelector('#modal-order');
 
@@ -258,9 +220,6 @@ function bindCardButtons() {
   });
 }
 
-// ============================================
-// MOBILE MENU
-// ============================================
 const burgerBtn = document.querySelector('.burger-btn');
 const mobileMenu = document.querySelector('.mobile-menu');
 const menuCloseBtn = document.querySelector('.mobile-menu__close');
@@ -289,20 +248,15 @@ document.querySelectorAll('.mobile-menu__link, .mobile-menu__cta').forEach(link 
   });
 });
 
-// ============================================
-// ORDER FORM
-// ============================================
 const orderForm = document.querySelector('.order-modal__form');
 if (orderForm) {
   orderForm.addEventListener('submit', async e => {
     e.preventDefault();
-
     const licenseChecked = orderForm.querySelector('#order-license')?.checked;
     if (!licenseChecked) {
       alert('Please agree to the Privacy Policy.');
       return;
     }
-
     try {
       await axios.post(`${API_BASE}/orders`, {
         name: orderForm.querySelector('#order-name')?.value,
@@ -320,9 +274,6 @@ if (orderForm) {
   });
 }
 
-// ============================================
-// INIT
-// ============================================
 async function init() {
   const bestsellers = await fetchBestsellers();
   renderBestsellers(bestsellers);
