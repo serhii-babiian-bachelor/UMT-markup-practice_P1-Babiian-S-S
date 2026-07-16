@@ -1650,3 +1650,21 @@ button {
 .order-modal__policy-link:hover {
   opacity: 0.6;
 }
+
+/* -------------------------------------------
+   SLIDER HIDDEN STATES (mobile only)
+   ------------------------------------------- */
+.feedback__item--hidden {
+  display: none;
+}
+
+.bestsellers__item--hidden {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .feedback__item--hidden,
+  .bestsellers__item--hidden {
+    display: block;
+  }
+}

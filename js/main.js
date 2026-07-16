@@ -287,81 +287,112 @@ if (orderForm) {
 
 
 // ============================================
-// FEEDBACK SLIDER
+// FEEDBACK SLIDER — mobile only (< 768px)
 // ============================================
 const feedbackList = document.querySelector('.feedback__list');
-const feedbackItems = feedbackList ? feedbackList.querySelectorAll('.feedback__item') : [];
+const feedbackItems = feedbackList ? Array.from(feedbackList.querySelectorAll('.feedback__item')) : [];
 const feedbackPrevBtn = document.querySelector('.feedback__arrows .slider-arrow:first-child');
 const feedbackNextBtn = document.querySelector('.feedback__arrows .slider-arrow:last-child');
 let feedbackIndex = 0;
 
-function showFeedback(index) {
+function isMobile() {
+  return window.innerWidth < 768;
+}
+
+function isTablet() {
+  return window.innerWidth >= 768 && window.innerWidth < 1440;
+}
+
+function updateFeedbackDisplay() {
+  if (!isMobile()) {
+    // Show all on tablet/desktop (CSS handles columns)
+    feedbackItems.forEach(item => { item.style.display = ''; });
+    return;
+  }
+  // Mobile: show one at a time
   feedbackItems.forEach((item, i) => {
-    item.style.display = i === index ? 'block' : 'none';
+    item.style.display = i === feedbackIndex ? 'block' : 'none';
   });
 }
 
 if (feedbackItems.length > 0) {
-  showFeedback(feedbackIndex);
+  updateFeedbackDisplay();
+  window.addEventListener('resize', updateFeedbackDisplay);
 
   if (feedbackPrevBtn) {
     feedbackPrevBtn.addEventListener('click', () => {
       feedbackIndex = (feedbackIndex - 1 + feedbackItems.length) % feedbackItems.length;
-      showFeedback(feedbackIndex);
+      updateFeedbackDisplay();
     });
   }
 
   if (feedbackNextBtn) {
     feedbackNextBtn.addEventListener('click', () => {
       feedbackIndex = (feedbackIndex + 1) % feedbackItems.length;
-      showFeedback(feedbackIndex);
+      updateFeedbackDisplay();
     });
   }
 }
 
 // ============================================
-// BESTSELLERS SLIDER
+// BESTSELLERS SLIDER — mobile: 1, tablet: 2, desktop: 3
 // ============================================
-let bestsellersItems = [];
 let bestsellersIndex = 0;
 const bestsellersPrevBtn = document.querySelector('.bestsellers__arrows .slider-arrow:first-child');
 const bestsellersNextBtn = document.querySelector('.bestsellers__arrows .slider-arrow:last-child');
 const dotBtns = document.querySelectorAll('.bestsellers__dot');
 
-function showBestseller(index) {
-  bestsellersItems = bestsellersSlider ? bestsellersSlider.querySelectorAll('.bestsellers__item') : [];
-  bestsellersItems.forEach((item, i) => {
-    item.style.display = i === index ? 'block' : 'none';
+function getVisibleCount() {
+  if (window.innerWidth >= 1440) return 3;
+  if (window.innerWidth >= 768) return 2;
+  return 1;
+}
+
+function updateBestsellersDisplay() {
+  const items = bestsellersSlider ? Array.from(bestsellersSlider.querySelectorAll('.bestsellers__item')) : [];
+  if (!items.length) return;
+
+  const visibleCount = getVisibleCount();
+
+  items.forEach((item, i) => {
+    const isVisible = i >= bestsellersIndex && i < bestsellersIndex + visibleCount;
+    item.style.display = isVisible ? 'block' : 'none';
   });
+
   dotBtns.forEach((dot, i) => {
-    dot.classList.toggle('bestsellers__dot--active', i === index);
+    dot.classList.toggle('bestsellers__dot--active', i === bestsellersIndex);
   });
 }
 
 function initBestsellersSlider() {
-  bestsellersItems = bestsellersSlider ? bestsellersSlider.querySelectorAll('.bestsellers__item') : [];
-  if (bestsellersItems.length === 0) return;
+  const items = bestsellersSlider ? Array.from(bestsellersSlider.querySelectorAll('.bestsellers__item')) : [];
+  if (!items.length) return;
 
-  showBestseller(bestsellersIndex);
+  updateBestsellersDisplay();
+  window.addEventListener('resize', updateBestsellersDisplay);
+
+  window.addEventListener('resize', () => showBestseller(bestsellersIndex));
 
   if (bestsellersPrevBtn) {
     bestsellersPrevBtn.addEventListener('click', () => {
-      bestsellersIndex = (bestsellersIndex - 1 + bestsellersItems.length) % bestsellersItems.length;
-      showBestseller(bestsellersIndex);
+      const items = bestsellersSlider.querySelectorAll('.bestsellers__item');
+      bestsellersIndex = (bestsellersIndex - 1 + items.length) % items.length;
+      updateBestsellersDisplay();
     });
   }
 
   if (bestsellersNextBtn) {
     bestsellersNextBtn.addEventListener('click', () => {
-      bestsellersIndex = (bestsellersIndex + 1) % bestsellersItems.length;
-      showBestseller(bestsellersIndex);
+      const items = bestsellersSlider.querySelectorAll('.bestsellers__item');
+      bestsellersIndex = (bestsellersIndex + 1) % items.length;
+      updateBestsellersDisplay();
     });
   }
 
   dotBtns.forEach((dot, i) => {
     dot.addEventListener('click', () => {
       bestsellersIndex = i;
-      showBestseller(bestsellersIndex);
+      updateBestsellersDisplay();
     });
   });
 }
