@@ -1,4 +1,4 @@
-// v6 - cache bust 2025
+// v5 - cache bust
 // Flora — main.js
 // Author: Serhii Babiian
 
@@ -17,20 +17,30 @@ const showMoreBtn = document.querySelector('.bouquets__show-more');
 const filterBtns = document.querySelectorAll('[data-filter]');
 const bestsellersSlider = document.querySelector('.bestsellers__list');
 
+// All bouquets cache
+let allBouquetsCache = null;
+
 async function fetchBouquets({ page = 1, category = 'all' } = {}) {
   try {
-    const offset = (page - 1) * ITEMS_PER_PAGE;
-    let url = `${API_BASE}/bouquets?_start=${offset}&_limit=${ITEMS_PER_PAGE}`;
-    if (category !== 'all') url += `&category=${category}`;
+    // Fetch all once and cache
+    if (!allBouquetsCache) {
+      const response = await axios.get(`${API_BASE}/bouquets`);
+      allBouquetsCache = Array.isArray(response.data) ? response.data : [];
+    }
 
-    const response = await axios.get(url);
-    const raw = response.data;
-    const total = parseInt(response.headers['x-total-count'] || 0, 10) || (Array.isArray(raw) ? raw.length : 0);
+    let filtered = allBouquetsCache;
+    if (category !== 'all') {
+      filtered = allBouquetsCache.filter(b => b.category === category);
+    }
+
+    const total = filtered.length;
+    const offset = (page - 1) * ITEMS_PER_PAGE;
+    const data = filtered.slice(offset, offset + ITEMS_PER_PAGE);
 
     return {
-      data: Array.isArray(raw) ? raw : [],
+      data,
       total,
-      pages: Math.ceil((total || 12) / ITEMS_PER_PAGE),
+      pages: Math.ceil(total / ITEMS_PER_PAGE),
     };
   } catch (error) {
     console.error('Fetch bouquets error:', error);
@@ -75,7 +85,6 @@ function createBouquetCard(b) {
 }
 
 function createBestsellerCard(b) {
-    console.log('BESTSELLER ITEM:', b);
   const img = b.photoURL || '';
   const name = b.title || '';
   const desc = b.description || '';
@@ -112,7 +121,6 @@ function renderBouquets(bouquets, append = false) {
 }
 
 function renderBestsellers(items) {
-    console.log('RENDER BESTSELLERS:', items);
   if (!bestsellersSlider || !items.length) return;
   bestsellersSlider.innerHTML = items.map(createBestsellerCard).join('');
   bindBestsellerButtons();
@@ -277,9 +285,91 @@ if (orderForm) {
   });
 }
 
+
+// ============================================
+// FEEDBACK SLIDER
+// ============================================
+const feedbackList = document.querySelector('.feedback__list');
+const feedbackItems = feedbackList ? feedbackList.querySelectorAll('.feedback__item') : [];
+const feedbackPrevBtn = document.querySelector('.feedback__arrows .slider-arrow:first-child');
+const feedbackNextBtn = document.querySelector('.feedback__arrows .slider-arrow:last-child');
+let feedbackIndex = 0;
+
+function showFeedback(index) {
+  feedbackItems.forEach((item, i) => {
+    item.style.display = i === index ? 'block' : 'none';
+  });
+}
+
+if (feedbackItems.length > 0) {
+  showFeedback(feedbackIndex);
+
+  if (feedbackPrevBtn) {
+    feedbackPrevBtn.addEventListener('click', () => {
+      feedbackIndex = (feedbackIndex - 1 + feedbackItems.length) % feedbackItems.length;
+      showFeedback(feedbackIndex);
+    });
+  }
+
+  if (feedbackNextBtn) {
+    feedbackNextBtn.addEventListener('click', () => {
+      feedbackIndex = (feedbackIndex + 1) % feedbackItems.length;
+      showFeedback(feedbackIndex);
+    });
+  }
+}
+
+// ============================================
+// BESTSELLERS SLIDER
+// ============================================
+let bestsellersItems = [];
+let bestsellersIndex = 0;
+const bestsellersPrevBtn = document.querySelector('.bestsellers__arrows .slider-arrow:first-child');
+const bestsellersNextBtn = document.querySelector('.bestsellers__arrows .slider-arrow:last-child');
+const dotBtns = document.querySelectorAll('.bestsellers__dot');
+
+function showBestseller(index) {
+  bestsellersItems = bestsellersSlider ? bestsellersSlider.querySelectorAll('.bestsellers__item') : [];
+  bestsellersItems.forEach((item, i) => {
+    item.style.display = i === index ? 'block' : 'none';
+  });
+  dotBtns.forEach((dot, i) => {
+    dot.classList.toggle('bestsellers__dot--active', i === index);
+  });
+}
+
+function initBestsellersSlider() {
+  bestsellersItems = bestsellersSlider ? bestsellersSlider.querySelectorAll('.bestsellers__item') : [];
+  if (bestsellersItems.length === 0) return;
+
+  showBestseller(bestsellersIndex);
+
+  if (bestsellersPrevBtn) {
+    bestsellersPrevBtn.addEventListener('click', () => {
+      bestsellersIndex = (bestsellersIndex - 1 + bestsellersItems.length) % bestsellersItems.length;
+      showBestseller(bestsellersIndex);
+    });
+  }
+
+  if (bestsellersNextBtn) {
+    bestsellersNextBtn.addEventListener('click', () => {
+      bestsellersIndex = (bestsellersIndex + 1) % bestsellersItems.length;
+      showBestseller(bestsellersIndex);
+    });
+  }
+
+  dotBtns.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      bestsellersIndex = i;
+      showBestseller(bestsellersIndex);
+    });
+  });
+}
+
 async function init() {
   const bestsellers = await fetchBestsellers();
   renderBestsellers(bestsellers);
+  initBestsellersSlider();
   await loadBouquets(false);
 }
 
