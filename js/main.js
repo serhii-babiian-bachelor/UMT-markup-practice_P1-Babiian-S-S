@@ -295,23 +295,18 @@ const feedbackPrevBtn = document.querySelector('.feedback__arrows .slider-arrow:
 const feedbackNextBtn = document.querySelector('.feedback__arrows .slider-arrow:last-child');
 let feedbackIndex = 0;
 
-function isMobile() {
-  return window.innerWidth < 768;
-}
-
-function isTablet() {
-  return window.innerWidth >= 768 && window.innerWidth < 1440;
+function getVisibleFeedbackCount() {
+  if (window.innerWidth >= 1440) return 3;
+  if (window.innerWidth >= 768) return 2;
+  return 1;
 }
 
 function updateFeedbackDisplay() {
-  if (!isMobile()) {
-    // Show all on tablet/desktop (CSS handles columns)
-    feedbackItems.forEach(item => { item.style.display = ''; });
-    return;
-  }
-  // Mobile: show one at a time
+  const visible = getVisibleFeedbackCount();
+  const total = feedbackItems.length;
   feedbackItems.forEach((item, i) => {
-    item.style.display = i === feedbackIndex ? 'block' : 'none';
+    const pos = (i - feedbackIndex + total) % total;
+    item.style.display = pos < visible ? 'block' : 'none';
   });
 }
 
@@ -353,10 +348,12 @@ function updateBestsellersDisplay() {
   if (!items.length) return;
 
   const visibleCount = getVisibleCount();
+  const total = items.length;
 
+  // Circular: show visibleCount items starting from bestsellersIndex
   items.forEach((item, i) => {
-    const isVisible = i >= bestsellersIndex && i < bestsellersIndex + visibleCount;
-    item.style.display = isVisible ? 'block' : 'none';
+    const pos = (i - bestsellersIndex + total) % total;
+    item.style.display = pos < visibleCount ? 'block' : 'none';
   });
 
   dotBtns.forEach((dot, i) => {
@@ -371,20 +368,18 @@ function initBestsellersSlider() {
   updateBestsellersDisplay();
   window.addEventListener('resize', updateBestsellersDisplay);
 
-  window.addEventListener('resize', () => showBestseller(bestsellersIndex));
-
   if (bestsellersPrevBtn) {
     bestsellersPrevBtn.addEventListener('click', () => {
-      const items = bestsellersSlider.querySelectorAll('.bestsellers__item');
-      bestsellersIndex = (bestsellersIndex - 1 + items.length) % items.length;
+      const total = bestsellersSlider.querySelectorAll('.bestsellers__item').length;
+      bestsellersIndex = (bestsellersIndex - 1 + total) % total;
       updateBestsellersDisplay();
     });
   }
 
   if (bestsellersNextBtn) {
     bestsellersNextBtn.addEventListener('click', () => {
-      const items = bestsellersSlider.querySelectorAll('.bestsellers__item');
-      bestsellersIndex = (bestsellersIndex + 1) % items.length;
+      const total = bestsellersSlider.querySelectorAll('.bestsellers__item').length;
+      bestsellersIndex = (bestsellersIndex + 1) % total;
       updateBestsellersDisplay();
     });
   }
